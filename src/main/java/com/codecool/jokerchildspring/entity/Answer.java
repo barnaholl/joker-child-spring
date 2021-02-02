@@ -25,7 +25,7 @@ public class Answer {
     private Boolean isTrue;
 
     @JsonBackReference
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne()
     private Exercise exercise;
 
 }

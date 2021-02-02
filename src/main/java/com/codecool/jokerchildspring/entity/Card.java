@@ -22,7 +22,7 @@ public class Card {
 
     @JsonManagedReference
     @Singular
-    @OneToMany(mappedBy = "card",cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Exercise> exercises;
 
     @JsonManagedReference

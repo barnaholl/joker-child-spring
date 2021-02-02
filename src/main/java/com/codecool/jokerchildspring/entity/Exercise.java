@@ -20,15 +20,14 @@ public class Exercise {
 
     private String question;
 
-    //@ToString.Exclude
-    //@EqualsAndHashCode.Exclude
+
     @Singular
     @JsonManagedReference
-    @OneToMany(mappedBy = "exercise",cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    @OneToMany(cascade = {CascadeType.PERSIST})
     private List<Answer> answers;
 
     @JsonBackReference
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne()
     private Card card;
 
     private String assistance;
