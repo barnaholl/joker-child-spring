@@ -23,7 +23,8 @@ public class ProfessionService {
     }
 
     public void createProfession(Profession profession){
-        professionRepository.save(profession);
+        Profession newProfession= Profession.builder().name(profession.getName()).picture(profession.getPicture()).build();
+        professionRepository.save(newProfession);
     }
 
     public void deleteProfession(Long id){
