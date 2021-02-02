@@ -14,10 +14,13 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @Entity
-public class DummyEntity {
+public class Profession {
     @Id
     @GeneratedValue
-    Long id;
+    private Long id;
 
-    String text;
+    private String name;
+
+    private String picture;
+
 }
