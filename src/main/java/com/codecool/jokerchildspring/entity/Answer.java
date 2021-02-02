@@ -6,27 +6,26 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-public class Profession {
+public class Answer {
+
     @Id
     @GeneratedValue
     private Long id;
 
-    private String name;
+    //TODO:Limit
+    private String word;
 
-    private String picture;
+    private Boolean isTrue;
 
     @JsonBackReference
-    @OneToOne(mappedBy = "profession")
-    private Card card;
+    @ManyToOne()
+    private Exercise exercise;
 
 }
