@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProfessionService {
 
-    private final ProfessionRepository professionRepository;
+    private ProfessionRepository professionRepository;
 
     public Profession getProfessionById(Long id){
         return professionRepository.findById(id).orElseThrow(EntityNotFoundException::new);

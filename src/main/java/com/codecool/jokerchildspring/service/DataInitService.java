@@ -6,6 +6,7 @@ import com.codecool.jokerchildspring.entity.Exercise;
 import com.codecool.jokerchildspring.entity.Profession;
 import com.codecool.jokerchildspring.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class DataInitService implements CommandLineRunner {
 
-    private final CardRepository cardRepository;
+    @Autowired
+    private CardRepository cardRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -30,7 +32,7 @@ public class DataInitService implements CommandLineRunner {
 
         Exercise exercise= Exercise.builder().question("Test question").assistance("test video url").answers(answerList).build();
 
-        Card card= Card.builder().identificationId("1001").profession(profession).exercise(exercise).build();
-        cardRepository.save(card);
+//        Card card= Card.builder().identificationId("1002").profession(profession).exercise(exercise).build();
+//        cardRepository.save(card);
     }
 }

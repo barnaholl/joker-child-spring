@@ -20,7 +20,6 @@ public class Exercise {
 
     private String question;
 
-
     @Singular
     @JsonManagedReference
     @OneToMany(cascade = {CascadeType.PERSIST})
