@@ -19,13 +19,13 @@ public class Answer {
     @GeneratedValue
     private Long id;
 
+    //TODO:Limit
     private String word;
 
     private Boolean isTrue;
 
     @JsonBackReference
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
     private Exercise exercise;
-
 
 }

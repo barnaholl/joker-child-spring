@@ -1,6 +1,7 @@
 package com.codecool.jokerchildspring.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,9 +23,13 @@ public class Exercise {
     //@ToString.Exclude
     //@EqualsAndHashCode.Exclude
     @Singular
-    @JsonBackReference
-    @OneToMany(mappedBy = "exercise",cascade = {CascadeType.PERSIST})
+    @JsonManagedReference
+    @OneToMany(mappedBy = "exercise",cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
     private List<Answer> answers;
+
+    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    private Card card;
 
     private String assistance;
 
