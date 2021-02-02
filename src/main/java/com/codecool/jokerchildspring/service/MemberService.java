@@ -30,6 +30,12 @@ public class MemberService {
         Member oldMember= memberRepository.findById(member.getId()).orElseThrow(EntityNotFoundException::new);
         oldMember.setName(member.getName());
         oldMember.setNick(member.getNick());
+        oldMember.setEmail(member.getEmail());
+        oldMember.setPassword(member.getPassword());
+        oldMember.setBirthDate(member.getBirthDate());
+        oldMember.setRole(member.getRole());
+        oldMember.setGameHistory(member.getGameHistory());
+        oldMember.setExperience(member.getExperience());
         memberRepository.save(oldMember);
     }
 

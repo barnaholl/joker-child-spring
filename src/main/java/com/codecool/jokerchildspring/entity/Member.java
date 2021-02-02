@@ -26,7 +26,7 @@ public class Member {
 
     private String password;
 
-    private Date birthDay;
+    private Date birthDate;
 
     private int role;
 
