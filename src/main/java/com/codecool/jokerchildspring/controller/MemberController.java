@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private MemberService memberService;
+    private final MemberService memberService;
 
     @GetMapping("/")
     public ResponseEntity getMemberById(@RequestParam("id") Long id){

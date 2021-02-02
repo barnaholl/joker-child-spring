@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CardService {
 
-    private CardRepository cardRepository;
+    private final CardRepository cardRepository;
 
     public Card getCardById(Long id) {
         return cardRepository.findById(id).orElseThrow(EntityNotFoundException::new);

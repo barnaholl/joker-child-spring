@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SchoolService {
 
-    private SchoolRepository schoolRepository;
+    private final SchoolRepository schoolRepository;
 
     public School getSchoolById(Long id) {
         return schoolRepository.findById(id).orElseThrow(EntityNotFoundException::new);

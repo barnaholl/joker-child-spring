@@ -1,11 +1,10 @@
 package com.codecool.jokerchildspring.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.codecool.jokerchildspring.model.MemberRole;
 import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -28,13 +27,13 @@ public class Member {
 
     private Date birthDate;
 
-    private int role;
+    private MemberRole role;
 
 //    @JsonManagedReference
 //    @OneToOne(cascade = {CascadeType.PERSIST})
     //TO DO GameHistory type
-    private int gameHistory;
+    //private int gameHistory;
 
-    int experience;
+    private Integer experience;
 
 }

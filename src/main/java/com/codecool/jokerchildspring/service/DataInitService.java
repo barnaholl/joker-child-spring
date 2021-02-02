@@ -14,11 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class DataInitService implements CommandLineRunner {
 
-    @Autowired
-    private CardRepository cardRepository;
+    private final CardRepository cardRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -32,7 +31,7 @@ public class DataInitService implements CommandLineRunner {
 
         Exercise exercise= Exercise.builder().question("Test question").assistance("test video url").answers(answerList).build();
 
-//        Card card= Card.builder().identificationId("1002").profession(profession).exercise(exercise).build();
-//        cardRepository.save(card);
+        Card card= Card.builder().identificationId("1001").profession(profession).exercise(exercise).build();
+        cardRepository.save(card);
     }
 }

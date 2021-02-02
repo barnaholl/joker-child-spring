@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberService {
 
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     public Member getMemberById(Long id) {
         return memberRepository.findById(id).orElseThrow(EntityNotFoundException::new);
@@ -23,10 +23,12 @@ public class MemberService {
     }
 
     public void createMember(Member member) {
+        //TODO:RoleCheck
         memberRepository.save(member);
     }
 
     public void updateMember(Member member) {
+        //TODO:RoleCheck
         Member oldMember= memberRepository.findById(member.getId()).orElseThrow(EntityNotFoundException::new);
         oldMember.setName(member.getName());
         oldMember.setNick(member.getNick());
@@ -34,7 +36,7 @@ public class MemberService {
         oldMember.setPassword(member.getPassword());
         oldMember.setBirthDate(member.getBirthDate());
         oldMember.setRole(member.getRole());
-        oldMember.setGameHistory(member.getGameHistory());
+        //oldMember.setGameHistory(member.getGameHistory());
         oldMember.setExperience(member.getExperience());
         memberRepository.save(oldMember);
     }
