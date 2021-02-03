@@ -18,9 +18,20 @@ public class JoinRequestController {
         return ResponseEntity.ok(joinRequestService.getJoinRequestByTeacherId(teacherId));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity getAllJoinRequest(){
+        return ResponseEntity.ok(joinRequestService.getAllJoinRequest());
+    }
+
     @PostMapping("/")
     public ResponseEntity createJoinRequest(@RequestBody JoinRequest joinRequest){
         joinRequestService.createJoinRequest(joinRequest);
         return ResponseEntity.ok("New JoinRequest created: "+joinRequest);
+    }
+
+    @DeleteMapping("/")
+    public ResponseEntity deleteJoinRequestById(@RequestParam("/id") Long id){
+        joinRequestService.deleteJoinRequest(id);
+        return ResponseEntity.ok("JoinRequest deleted at id: "+id);
     }
 }

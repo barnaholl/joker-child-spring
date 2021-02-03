@@ -31,4 +31,12 @@ public class JoinRequestService {
     public void createJoinRequest(JoinRequest joinRequest) {
         joinRequestRepository.save(joinRequest);
     }
+
+    public List<JoinRequest> getAllJoinRequest() {
+        return joinRequestRepository.findAll();
+    }
+
+    public void deleteJoinRequest(Long id) {
+        joinRequestRepository.deleteById(id);
+    }
 }
