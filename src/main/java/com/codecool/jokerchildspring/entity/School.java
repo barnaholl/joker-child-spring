@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,8 +18,9 @@ public class School {
     private Long id;
 
     @JsonManagedReference
-    @OneToOne(cascade = {CascadeType.PERSIST})
-    private Member member;
+    @Singular
+    @ManyToMany()
+    private List<Member> students;
 
     private String city;
 
@@ -26,4 +28,7 @@ public class School {
 
     private String team;   // class vagy group nem lehet
 
+    @JsonManagedReference
+    @ManyToOne()
+    private Member teacher;
 }

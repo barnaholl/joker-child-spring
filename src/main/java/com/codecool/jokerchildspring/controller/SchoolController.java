@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class SchoolController {
 
-    private SchoolService schoolService;
+    private final SchoolService schoolService;
 
     @GetMapping("/")
     public ResponseEntity getSchoolById(@RequestParam("id") Long id){

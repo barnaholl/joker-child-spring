@@ -28,7 +28,7 @@ public class SchoolService {
 
     public void updateSchool(School school) {
         School oldSchool= schoolRepository.findById(school.getId()).orElseThrow(EntityNotFoundException::new);
-        oldSchool.setMember(school.getMember());
+        oldSchool.setStudents(school.getStudents());
         oldSchool.setCity(school.getName());
         oldSchool.setName(school.getName());
         oldSchool.setTeam(school.getTeam());
