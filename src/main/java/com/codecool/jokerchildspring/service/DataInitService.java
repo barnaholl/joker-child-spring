@@ -26,13 +26,7 @@ public class DataInitService implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Profession profession= Profession.builder().name("Programmer").picture("not yet").build();
 
-        List<Answer> answerList= new ArrayList<>();
-        answerList.add(Answer.builder().word("answer1").isTrue(true).build());
-        answerList.add(Answer.builder().word("answer2").isTrue(false).build());
-        answerList.add(Answer.builder().word("answer3").isTrue(false).build());
-        answerList.add(Answer.builder().word("answer4").isTrue(true).build());
-
-        Exercise exercise= Exercise.builder().question("Test question").assistance("test video url").answers(answerList).build();
+        Exercise exercise= Exercise.builder().question("Test question").assistance("test video url").answer("answer1,answer2;answer3,answer4").build();
 
         Card card= Card.builder().identificationId("1001").profession(profession).exercise(exercise).build();
         cardRepository.save(card);
@@ -46,8 +40,6 @@ public class DataInitService implements CommandLineRunner {
                 .role(MemberRole.STUDENT)
                 .experience(0)
                 .build();
-
-
 
         Member teacher= Member.builder()
                 .name("Dummy Teacher")
@@ -66,11 +58,10 @@ public class DataInitService implements CommandLineRunner {
                 .city("Budapest")
                 .name("Average School")
                 .team("1a")
-                .student(student)
-                .teacher(teacher)
+                .teacherId(2L)
+                .student(1L)
                 .build();
 
         schoolRepository.save(school);
-
     }
 }

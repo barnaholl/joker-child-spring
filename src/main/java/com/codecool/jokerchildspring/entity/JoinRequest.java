@@ -1,31 +1,27 @@
 package com.codecool.jokerchildspring.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-public class Answer {
+
+public class JoinRequest {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    //TODO:Limit
-    private String word;
+    private Long userId;
 
-    private Boolean isTrue;
-
-    @JsonBackReference
-    @ManyToOne()
-    private Exercise exercise;
-
+    private Long schoolId;
 }
