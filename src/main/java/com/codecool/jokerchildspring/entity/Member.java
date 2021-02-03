@@ -1,12 +1,10 @@
 package com.codecool.jokerchildspring.entity;
 
 import com.codecool.jokerchildspring.model.MemberRole;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -37,15 +35,5 @@ public class Member {
     //private int gameHistory;
 
     private Integer experience;
-
-    @JsonBackReference
-    @Singular
-    @OneToMany(cascade = CascadeType.PERSIST)
-    private List<School> heldClasses;
-
-    @JsonBackReference
-    @Singular
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    private List<School> enrolledClasses;
 
 }

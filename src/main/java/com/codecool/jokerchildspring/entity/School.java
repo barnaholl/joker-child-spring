@@ -17,18 +17,16 @@ public class School {
     @GeneratedValue
     private Long id;
 
-    @JsonManagedReference
-    @Singular
-    @ManyToMany()
-    private List<Member> students;
-
     private String city;
 
     private String name;
 
-    private String team;   // class vagy group nem lehet
+    private String team;
 
-    @JsonManagedReference
-    @ManyToOne()
-    private Member teacher;
+    private Long teacherId;
+
+    @ElementCollection
+    @Singular
+    private List<Long> students;
+
 }
