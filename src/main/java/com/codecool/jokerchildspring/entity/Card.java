@@ -32,6 +32,7 @@ public class Card {
 
     @JsonBackReference
     @OneToOne(cascade = {CascadeType.PERSIST})
+    @Column(nullable=true)
     private GameHistory gameHistory;
 
 }

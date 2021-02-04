@@ -2,9 +2,7 @@ package com.codecool.jokerchildspring.service;
 
 import com.codecool.jokerchildspring.entity.*;
 import com.codecool.jokerchildspring.model.MemberRole;
-import com.codecool.jokerchildspring.repository.CardRepository;
-import com.codecool.jokerchildspring.repository.MemberRepository;
-import com.codecool.jokerchildspring.repository.SchoolRepository;
+import com.codecool.jokerchildspring.repository.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +26,8 @@ public class DataInitService implements CommandLineRunner {
     private final CardRepository cardRepository;
     private final SchoolRepository schoolRepository;
     private final MemberRepository memberRepository;
+    private final ProfessionRepository professionRepository;
+    private final GameHistoryRepository gameHistoryRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -35,6 +35,9 @@ public class DataInitService implements CommandLineRunner {
         cardRepository.deleteAll();
         schoolRepository.deleteAll();
         memberRepository.deleteAll();
+        memberRepository.deleteAll();
+        professionRepository.deleteAll();
+        gameHistoryRepository.deleteAll();
 
 
         Profession profession= Profession.builder().name("Űrhajós").picture("not yet").build();
@@ -56,10 +59,17 @@ public class DataInitService implements CommandLineRunner {
         exercises.add(exercise1);
         exercises.add(exercise2);
         exercises.add(exercise3);
+
+        GameHistory gameHistory= GameHistory.builder()
+                .passed(false)
+                .badCount(0)
+                .build();
+
         Card card= Card.builder()
                 .identificationId("18hg4e1")
                 .profession(profession)
-                .exercises(exercises).build();
+                .exercises(exercises)
+                .build();
 
         cardRepository.save(card);
 
