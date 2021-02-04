@@ -18,6 +18,11 @@ public class CardController {
         return ResponseEntity.ok(cardService.getCardById(id));
     }
 
+    @GetMapping("/byIdentificationId")
+    public ResponseEntity getCardByIdentificationId(@RequestParam("identificationId") String identificationId){
+        return ResponseEntity.ok(cardService.getCardByIdentificationId(identificationId));
+    }
+
     @GetMapping("/all")
     public ResponseEntity getAllCards(){
         return ResponseEntity.ok(cardService.getAllCards());
