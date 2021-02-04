@@ -36,7 +36,6 @@ public class MemberService {
         oldMember.setPassword(member.getPassword());
         oldMember.setBirthDate(member.getBirthDate());
         oldMember.setRole(member.getRole());
-        //oldMember.setGameHistory(member.getGameHistory());
         oldMember.setExperience(member.getExperience());
         memberRepository.save(oldMember);
     }

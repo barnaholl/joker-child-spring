@@ -28,7 +28,7 @@ public class DataInitService implements CommandLineRunner {
 
         Exercise exercise= Exercise.builder().question("Test question").assistance("test video url").answer("answer1,answer2;answer3,answer4").build();
 
-        Card card= Card.builder().identificationId("1001").profession(profession).exercise(exercise).build();
+        Card card= Card.builder().identificationId("1003").profession(profession).exercise(exercise).build();
         cardRepository.save(card);
 
         Member student= Member.builder()
