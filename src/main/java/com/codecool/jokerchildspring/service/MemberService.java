@@ -2,6 +2,7 @@ package com.codecool.jokerchildspring.service;
 
 import com.codecool.jokerchildspring.entity.Member;
 import com.codecool.jokerchildspring.repository.MemberRepository;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +24,10 @@ public class MemberService {
     }
 
     public void createMember(Member member) {
-        //TODO:RoleCheck
         memberRepository.save(member);
     }
 
     public void updateMember(Member member) {
-        //TODO:RoleCheck
         Member oldMember= memberRepository.findById(member.getId()).orElseThrow(EntityNotFoundException::new);
         oldMember.setName(member.getName());
         oldMember.setNick(member.getNick());
