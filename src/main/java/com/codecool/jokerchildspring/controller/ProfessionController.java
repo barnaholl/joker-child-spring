@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/profession")
 @RequiredArgsConstructor
