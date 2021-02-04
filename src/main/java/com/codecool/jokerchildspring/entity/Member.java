@@ -1,6 +1,7 @@
 package com.codecool.jokerchildspring.entity;
 
 import com.codecool.jokerchildspring.model.MemberRole;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -29,6 +30,10 @@ public class Member {
     private Date birthDate;
 
     private MemberRole role;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "member", cascade = {CascadeType.PERSIST})
+    private GameHistory gameHistory;
 
     private Integer experience;
 

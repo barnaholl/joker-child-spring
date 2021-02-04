@@ -28,4 +28,8 @@ public class Exercise {
 
     private String assistance;
 
+    @JsonBackReference
+    @OneToOne(cascade = {CascadeType.PERSIST})
+    private GameHistory gameHistory;
+
 }

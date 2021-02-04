@@ -1,5 +1,6 @@
 package com.codecool.jokerchildspring.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -28,5 +29,9 @@ public class Card {
     @JsonManagedReference
     @OneToOne(cascade = {CascadeType.PERSIST})
     private Profession profession;
+
+    @JsonBackReference
+    @OneToOne(cascade = {CascadeType.PERSIST})
+    private GameHistory gameHistory;
 
 }

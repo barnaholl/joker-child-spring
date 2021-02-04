@@ -1,6 +1,7 @@
 package com.codecool.jokerchildspring.entity;
 
 import com.codecool.jokerchildspring.model.MemberRole;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -18,8 +19,8 @@ public class GameHistory {
     @GeneratedValue
     private Long id;
 
-    @JsonManagedReference
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Member member;
 
     @JsonManagedReference
