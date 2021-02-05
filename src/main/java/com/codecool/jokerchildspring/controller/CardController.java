@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/card")
 @RequiredArgsConstructor
@@ -16,6 +17,11 @@ public class CardController {
     @GetMapping("/")
     public ResponseEntity getCardById(@RequestParam("id") Long id){
         return ResponseEntity.ok(cardService.getCardById(id));
+    }
+
+    @GetMapping("/byIdentificationId")
+    public ResponseEntity getCardByIdentificationId(@RequestParam("identificationId") String identificationId){
+        return ResponseEntity.ok(cardService.getCardByIdentificationId(identificationId));
     }
 
     @GetMapping("/all")

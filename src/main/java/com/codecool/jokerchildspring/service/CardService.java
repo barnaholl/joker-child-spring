@@ -37,4 +37,8 @@ public class CardService {
     public void deleteCard(Long id) {
         cardRepository.deleteById(id);
     }
+
+    public Card getCardByIdentificationId(String identificationId) {
+        return cardRepository.findByIdentificationId(identificationId);
+    }
 }
