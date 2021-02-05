@@ -19,7 +19,6 @@ public class GameHistory {
     private Long id;
 
     @JsonBackReference
-    @Column(nullable=true)
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Member member;
 
