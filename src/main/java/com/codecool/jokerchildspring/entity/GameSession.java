@@ -1,6 +1,5 @@
 package com.codecool.jokerchildspring.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +19,5 @@ public class GameSession {
 
     private Long userId;
 
-    @JsonManagedReference
-    @ManyToOne()
-    private Card card;
+    private Long cardId;
 }

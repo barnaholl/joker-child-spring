@@ -3,6 +3,7 @@ package com.codecool.jokerchildspring.controller;
 import com.codecool.jokerchildspring.entity.GameSession;
 import com.codecool.jokerchildspring.service.GameSessionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

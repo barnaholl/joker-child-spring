@@ -9,4 +9,6 @@ public interface GameSessionRepository extends JpaRepository<GameSession,Long> {
     Optional<GameSession> findByUserId(Long userId);
 
     void deleteByUserId(Long userId);
+
+    GameSession getByUserId(Long userId);
 }
