@@ -34,4 +34,8 @@ public class Card {
     @OneToOne(cascade = {CascadeType.PERSIST})
     private GameHistory gameHistory;
 
+    @JsonBackReference
+    @OneToMany(cascade = {CascadeType.PERSIST})
+    private List<GameSession> gameSession;
+
 }
