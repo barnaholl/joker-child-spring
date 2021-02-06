@@ -3,7 +3,6 @@ package com.codecool.jokerchildspring.controller;
 import com.codecool.jokerchildspring.entity.GameSession;
 import com.codecool.jokerchildspring.service.GameSessionService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,5 +29,10 @@ public class GameSessionController {
     public ResponseEntity deleteGameSessionByUserId(@RequestParam("userId") Long userId){
         gameSessionService.deleteGameSessionByUserId(userId);
         return ResponseEntity.ok("Game session deleted with userId: "+userId);
+    }
+
+    @GetMapping("/card/")
+    public ResponseEntity getGameSessionsCardByUserId(@RequestParam("userId") Long userId){
+        return ResponseEntity.ok(gameSessionService.getGameSessionsCardByUserId(userId));
     }
 }
