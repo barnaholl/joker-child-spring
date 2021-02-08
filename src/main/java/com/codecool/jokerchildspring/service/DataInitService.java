@@ -35,7 +35,6 @@ public class DataInitService implements CommandLineRunner {
         cardRepository.deleteAll();
         schoolRepository.deleteAll();
         memberRepository.deleteAll();
-        memberRepository.deleteAll();
         professionRepository.deleteAll();
         gameHistoryRepository.deleteAll();
 
@@ -60,10 +59,10 @@ public class DataInitService implements CommandLineRunner {
         exercises.add(exercise2);
         exercises.add(exercise3);
 
-        GameHistory gameHistory= GameHistory.builder()
-                .passed(false)
-                .badCount(0)
-                .build();
+//        GameHistory gameHistory= GameHistory.builder()
+//                .passed(false)
+//                .badCount(0)
+//                .build();
 
         Card card= Card.builder()
                 .identificationId("18hg4e1")
