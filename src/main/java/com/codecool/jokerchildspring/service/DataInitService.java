@@ -3,18 +3,10 @@ package com.codecool.jokerchildspring.service;
 import com.codecool.jokerchildspring.entity.*;
 import com.codecool.jokerchildspring.model.MemberRole;
 import com.codecool.jokerchildspring.repository.*;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.RequiredArgsConstructor;
-import lombok.Singular;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,10 +51,21 @@ public class DataInitService implements CommandLineRunner {
         exercises.add(exercise2);
         exercises.add(exercise3);
 
-//        GameHistory gameHistory= GameHistory.builder()
-//                .passed(false)
-//                .badCount(0)
-//                .build();
+
+
+        GameHistory gameHistory= GameHistory.builder()
+                .memberId(7L)
+                .passed(false)
+                .badCount(0)
+                .experience(10)
+               // .passedDate(new Date("2021-01-12"))
+                .build();
+
+        gameHistoryRepository.save(gameHistory);
+
+
+
+
 
         Card card= Card.builder()
                 .identificationId("18hg4e1")

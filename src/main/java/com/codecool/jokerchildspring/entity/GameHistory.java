@@ -18,9 +18,9 @@ public class GameHistory {
     @GeneratedValue
     private Long id;
 
-    @JsonBackReference
-    @ManyToOne(cascade = {CascadeType.PERSIST})
-    private Member member;
+//    @JsonBackReference
+//    @ManyToOne(cascade = {CascadeType.PERSIST})
+    private Long memberId;
 
     @JsonManagedReference
     @OneToOne(cascade = {CascadeType.PERSIST})

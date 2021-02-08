@@ -18,6 +18,11 @@ public class GameHistoryService {
         return gameHistoryRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
+    public int getXpByMember(Long memberId){
+        GameHistory gh = gameHistoryRepository.findByMemberId(memberId).orElseThrow(EntityNotFoundException::new);
+        return gh.getExperience();
+    }
+
     public List<GameHistory> getAllGameHistorys() {
         return gameHistoryRepository.findAll();
     }
@@ -30,7 +35,7 @@ public class GameHistoryService {
     public void updateGameHistory(GameHistory gameHistory) {
         //TODO:RoleCheck
         GameHistory oldGameHistory= gameHistoryRepository.findById(gameHistory.getId()).orElseThrow(EntityNotFoundException::new);
-        oldGameHistory.setMember(gameHistory.getMember());
+        oldGameHistory.setMemberId(gameHistory.getMemberId());
         oldGameHistory.setCard(gameHistory.getCard());
         oldGameHistory.setExercise(gameHistory.getExercise());
         oldGameHistory.setPassed(gameHistory.getPassed());

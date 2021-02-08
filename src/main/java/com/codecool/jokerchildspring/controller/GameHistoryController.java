@@ -19,6 +19,11 @@ public class GameHistoryController {
         return ResponseEntity.ok(gameHistoryService.getGameHistoryById(id));
     }
 
+    @GetMapping("/getXpByMember")
+    public ResponseEntity getXpByMember(@RequestParam("memberId") Long memberId){
+        return ResponseEntity.ok(gameHistoryService.getXpByMember(memberId));
+    }
+
     @GetMapping("/all")
     public ResponseEntity getAllGameHistorys(){
         return ResponseEntity.ok(gameHistoryService.getAllGameHistorys());
