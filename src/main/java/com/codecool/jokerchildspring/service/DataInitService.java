@@ -46,7 +46,7 @@ public class DataInitService implements CommandLineRunner {
                 .assistance("test video url")
                 .answer("Nap máshonnan süti,Nap sütötte rész fényes;mert lapos,könnyű porból van,gravitáció változik,apály-dagály mozgatja").build();
         Exercise exercise2= Exercise.builder()
-                .question("Miért nem lehet kimenni az űrbe űrruha nélkül")
+                .question("Miért nem lehet kimenni az űrbe űrruha nélkül?")
                 .assistance("test video url")
                 .answer("túl hideg van,nincs levegő,nincs nyomás,túl meleg van;nem divatos,meteoritok miatt,kórokozók ellen,űrszmog miatt,megvéd űrlényektől,megszólnának a marslakók").build();
         Exercise exercise3= Exercise.builder()
