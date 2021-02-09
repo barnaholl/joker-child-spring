@@ -60,8 +60,6 @@ public class DataInitService implements CommandLineRunner {
         exercises.add(exercise2);
         exercises.add(exercise3);
 
-
-
         Card card= Card.builder()
                 .id(1L)
                 .identificationId("18hg4e1")
@@ -72,11 +70,10 @@ public class DataInitService implements CommandLineRunner {
         cardRepository.save(card);
 
 
-
-
-
         GameHistory gameHistory1= GameHistory.builder()
                 .memberId(0L)
+                .cardId(6L)
+                .exerciseId(3L)
                 .passed(false)
                 .badCount(0)
                 .experience(0)
@@ -86,6 +83,8 @@ public class DataInitService implements CommandLineRunner {
 
         GameHistory gameHistory2= GameHistory.builder()
                 .memberId(0L)
+                .cardId(6L)
+                .exerciseId(4L)
                 .passed(true)
                 .badCount(1)
                 .experience(2)

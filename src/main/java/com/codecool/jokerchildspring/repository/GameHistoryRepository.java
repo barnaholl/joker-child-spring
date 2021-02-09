@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface GameHistoryRepository extends JpaRepository<GameHistory,Long> {
+    Optional<GameHistory> findByMemberId(Long memberId);
+
+    Optional<GameHistory> findByExerciseIdAndMemberId(Long exerciseId, Long userId);
+
     Optional<GameHistory> findById(Long id);
 
     Optional<GameHistory> findByMemberIdAndExerciseId(Long memberId, Long exerciseId);
@@ -14,5 +18,4 @@ public interface GameHistoryRepository extends JpaRepository<GameHistory,Long> {
     List<GameHistory> findAllByMemberId(Long memberId);
 
     List<GameHistory> findByMemberIdAndCardId(Long memberId, Long cardId);
-
 }
