@@ -22,9 +22,10 @@ public class GameHistory {
 //    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Long memberId;
 
-    @JsonManagedReference
-    @OneToOne(cascade = {CascadeType.PERSIST})
-    private Card card;
+//    @JsonManagedReference
+//    @OneToOne(cascade = {CascadeType.PERSIST})
+//    private Card card;
+    private Long cardId;
 
     @JsonManagedReference
     @OneToOne(cascade = {CascadeType.PERSIST})
