@@ -35,7 +35,7 @@ public class DataInitService implements CommandLineRunner {
 
         Profession profession1= Profession.builder().name("Űrhajós").picture("not yet").build();
         professionRepository.save(profession1);
-        Profession profession2= Profession.builder().name("Sportoló").picture("not yet").build();
+        Profession profession2= Profession.builder().name("Sportoló").picture("not yet").description("Az űrhajós leírásának a helye").build();
         professionRepository.save(profession2);
 
         Exercise exercise1= Exercise.builder()
