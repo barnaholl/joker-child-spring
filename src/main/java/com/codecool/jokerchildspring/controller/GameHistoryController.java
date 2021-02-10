@@ -34,9 +34,9 @@ public class GameHistoryController {
         return ResponseEntity.ok(gameHistoryService.getPassedByMemberIdAndExerciseId(memberId,execiseId));
     }
 
-    @GetMapping("/getPlayedCardsCountByMemberId")
+    @GetMapping("/getPlayedExercisesCountByMemberId")
     public ResponseEntity getPlayedCardsCountByMemberId(@RequestParam("memberId") Long memberId){
-        return ResponseEntity.ok(gameHistoryService.getPlayedCardsCountByMemberId(memberId));
+        return ResponseEntity.ok(gameHistoryService.getPlayedExercisesCountByMemberId(memberId));
     }
 
 //    @GetMapping("/getPlayedCardsByMember")   // nem a kártyák kellettek, hanem csak a db

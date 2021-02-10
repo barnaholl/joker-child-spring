@@ -41,7 +41,7 @@ public class GameHistoryService {
         return gh.getPassed();
     }
 
-    public int getPlayedCardsCountByMemberId(Long memberId) {
+    public int getPlayedExercisesCountByMemberId(Long memberId) {
         return gameHistoryRepository.findAllByMemberId(memberId).size();
     }
 
