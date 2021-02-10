@@ -25,6 +25,8 @@ public class Profession {
 
     private String picture;
 
+    private String description;
+
     @JsonBackReference
     @OneToOne(mappedBy = "profession")
     private Card card;

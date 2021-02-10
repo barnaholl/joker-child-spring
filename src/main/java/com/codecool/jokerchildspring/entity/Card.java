@@ -30,8 +30,8 @@ public class Card {
     @OneToOne(cascade = {CascadeType.PERSIST})
     private Profession profession;
 
-    @JsonBackReference
-    @OneToOne(cascade = {CascadeType.PERSIST})
-    private GameHistory gameHistory;
+//    @JsonBackReference
+//    @OneToOne(cascade = {CascadeType.PERSIST})
+//    private GameHistory gameHistory;
 
 }
