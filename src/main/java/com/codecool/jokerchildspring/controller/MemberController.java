@@ -20,6 +20,11 @@ public class MemberController {
         return ResponseEntity.ok(memberService.getMemberById(id));
     }
 
+    @GetMapping("/getXpByMemberId")
+    public ResponseEntity getXpByMemberId(@RequestParam("id") Long memberId){
+        return ResponseEntity.ok(memberService.getXpByMemberById(memberId));
+    }
+
     @GetMapping("/all")
     public ResponseEntity getAllMembers(){
         return ResponseEntity.ok(memberService.getAllMembers());

@@ -3,18 +3,10 @@ package com.codecool.jokerchildspring.service;
 import com.codecool.jokerchildspring.entity.*;
 import com.codecool.jokerchildspring.model.MemberRole;
 import com.codecool.jokerchildspring.repository.*;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.RequiredArgsConstructor;
-import lombok.Singular;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +20,7 @@ public class DataInitService implements CommandLineRunner {
     private final MemberRepository memberRepository;
     private final ProfessionRepository professionRepository;
     private final GameHistoryRepository gameHistoryRepository;
+    private final ExerciseRepository exerciseRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -35,12 +28,15 @@ public class DataInitService implements CommandLineRunner {
         cardRepository.deleteAll();
         schoolRepository.deleteAll();
         memberRepository.deleteAll();
-        memberRepository.deleteAll();
         professionRepository.deleteAll();
         gameHistoryRepository.deleteAll();
+        exerciseRepository.deleteAll();
 
 
-        Profession profession= Profession.builder().name("Űrhajós").picture("not yet").build();
+        Profession profession1= Profession.builder().name("Űrhajós").picture("not yet").build();
+        professionRepository.save(profession1);
+        Profession profession2= Profession.builder().name("Sportoló").picture("not yet").description("Az űrhajós leírásának a helye").build();
+        professionRepository.save(profession2);
 
         Exercise exercise1= Exercise.builder()
                 .question("Miért látjuk úgy a Földről, hogy változik a Hold alakja?")
@@ -55,55 +51,83 @@ public class DataInitService implements CommandLineRunner {
                 .assistance("test video url")
                 .answer("meteoritok bombázták, nincs légkör ami elfújja,nincs légköt ami megvédje;így született,idegenek ásták,űrharc maradványai,Nap olvasztotta meg,").build();
 
+        exerciseRepository.save(exercise1);
+        exerciseRepository.save(exercise2);
+        exerciseRepository.save(exercise3);
+
         List<Exercise> exercises = new ArrayList<>();
         exercises.add(exercise1);
         exercises.add(exercise2);
         exercises.add(exercise3);
 
-        GameHistory gameHistory= GameHistory.builder()
-                .passed(false)
-                .badCount(0)
-                .build();
-
         Card card= Card.builder()
+                .id(1L)
                 .identificationId("18hg4e1")
-                .profession(profession)
+                .profession(profession1)
                 .exercises(exercises)
                 .build();
 
         cardRepository.save(card);
 
 
+        GameHistory gameHistory1= GameHistory.builder()
+                .memberId(0L)
+                .cardId(6L)
+                .exerciseId(3L)
+                .passed(false)
+                .badCount(0)
+                .experience(0)
+                .build();
+
+        gameHistoryRepository.save(gameHistory1);
+
+        GameHistory gameHistory2= GameHistory.builder()
+                .memberId(0L)
+                .cardId(6L)
+                .exerciseId(4L)
+                .passed(true)
+                .badCount(1)
+                .experience(2)
+                .passedDate(Date.valueOf("2021-01-09"))
+                .build();
+
+        gameHistoryRepository.save(gameHistory2);
+
+
+
+
         Member student= Member.builder()
+                .id(0L)
                 .name("Viktória")
                 .nick("Vikusz")
                 .birthDate(Date.valueOf("2009-09-09"))
                 .email("best@student.com")
                 .password("1234")
                 .role(MemberRole.STUDENT)
-                .experience(0)
+                .experience(2)
                 .build();
 
         memberRepository.save(student);
 
         Member teacher= Member.builder()
+                .id(1L)
                 .name("Dummy Teacher")
                 .nick("BestTeacherEver")
                 .birthDate(Date.valueOf("1996-09-09"))
                 .email("best@teacher.com")
                 .password("1234")
                 .role(MemberRole.TEACHER)
-                .experience(0)
+                .experience(2)
                 .build();
 
         memberRepository.save(teacher);
+
 
         School school= School.builder()
                 .city("Budapest")
                 .name("Average School")
                 .team("5a")
                 .teacherId(2L)
-                .student(1L)
                 .build();
 
         schoolRepository.save(school);

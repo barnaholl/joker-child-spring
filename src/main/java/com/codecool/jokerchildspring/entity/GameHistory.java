@@ -18,17 +18,18 @@ public class GameHistory {
     @GeneratedValue
     private Long id;
 
-    @JsonBackReference
-    @ManyToOne(cascade = {CascadeType.PERSIST})
-    private Member member;
+//    @JsonBackReference
+//    @ManyToOne(cascade = {CascadeType.PERSIST})
+    private Long memberId;
 
-    @JsonManagedReference
-    @OneToOne(cascade = {CascadeType.PERSIST})
-    private Card card;
+//    @JsonManagedReference
+//    @OneToOne(cascade = {CascadeType.PERSIST})
+//    private Card card;
+    private Long cardId;
 
-    @JsonManagedReference
-    @OneToOne(cascade = {CascadeType.PERSIST})
-    private Exercise exercise;
+    //@JsonManagedReference
+    //@OneToOne(cascade = {CascadeType.PERSIST})
+    private Long exerciseId;
 
     private Boolean passed=false;
 
