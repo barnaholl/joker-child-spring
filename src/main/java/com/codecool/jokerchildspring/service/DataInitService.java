@@ -47,15 +47,15 @@ public class DataInitService implements CommandLineRunner {
 
         Exercise exercise1= Exercise.builder()
                 .question("Miért látjuk úgy a Földről, hogy változik a Hold alakja?")
-                .assistance("test video url")
+                .assistance("https://www.youtube.com/watch?v=FDXPH8r0p30")
                 .answer("Nap máshonnan süti,Nap sütötte rész fényes;mert lapos,könnyű porból van,gravitáció változik,apály-dagály mozgatja").build();
         Exercise exercise2= Exercise.builder()
                 .question("Miért nem lehet kimenni az űrbe űrruha nélkül?")
-                .assistance("test video url")
+                .assistance("https://www.youtube.com/watch?v=AsWDKqnihjo")
                 .answer("túl hideg van,nincs levegő,nincs nyomás,túl meleg van;nem divatos,meteoritok miatt,kórokozók ellen,űrszmog miatt,megvéd űrlényektől,megszólnának a marslakók").build();
         Exercise exercise3= Exercise.builder()
                 .question("Hogyan alakultak ki a Hold kráterei?")
-                .assistance("test video url")
+                .assistance("https://www.youtube.com/watch?v=nJGHKCbg-fw")
                 .answer("meteoritok bombázták, nincs légkör ami elfújja,nincs légköt ami megvédje;így született,idegenek ásták,űrharc maradványai,Nap olvasztotta meg").build();
 
         exerciseRepository.save(exercise1);
@@ -100,11 +100,11 @@ public class DataInitService implements CommandLineRunner {
                 .answer("Hűti a testet,").build();
         Exercise exercise6= Exercise.builder()
                 .question("Meddig bírja az ember víz alatt egy levegővel?")
-                .assistance("test video url")
+                .assistance("https://www.youtube.com/watch?v=L89kY5ewgqU")
                 .answer("Átlag ember 30-90 másodperc,Világrekord 24 perc;Nincs levegő így nem bírja,Pár óra,Az első 5 perc nehéz csak").build();
         Exercise exercise7= Exercise.builder()
                 .question("Milyen vitaminokat fogyassz izomlázra?")
-                .assistance("test video url")
+                .assistance("https://www.youtube.com/watch?v=56r7tuql3FM")
                 .answer("Kálcium,Magnézium,Banán;C vitamin,Vodka,pókagya-macskahája,tejszínes jég").build();
 
 
