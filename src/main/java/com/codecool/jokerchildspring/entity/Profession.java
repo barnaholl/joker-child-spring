@@ -23,7 +23,7 @@ public class Profession {
 
     private String name;
 
-    private String picture;
+    private byte[] picture;
 
     private String description;
 

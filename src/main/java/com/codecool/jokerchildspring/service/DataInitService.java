@@ -7,9 +7,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 @Service
 @RequiredArgsConstructor
@@ -32,11 +38,15 @@ public class DataInitService implements CommandLineRunner {
         gameHistoryRepository.deleteAll();
         exerciseRepository.deleteAll();
 
-
-        Profession profession1= Profession.builder().name("Űrhajós").picture("not yet").build();
+        byte[] profPic = {1,2};
+        try {
+            profPic = Files.readAllBytes(Paths.get("18hg4e1.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Profession profession1= Profession.builder().name("Űrhajós").description("Űrhajóval megy az ürbe és ott feladatokat lát el").picture(profPic).build();
         professionRepository.save(profession1);
-        Profession profession2= Profession.builder().name("Sportoló").picture("not yet").build();
-        professionRepository.save(profession2);
+
 
         Exercise exercise1= Exercise.builder()
                 .question("Miért látjuk úgy a Földről, hogy változik a Hold alakja?")
@@ -49,27 +59,91 @@ public class DataInitService implements CommandLineRunner {
         Exercise exercise3= Exercise.builder()
                 .question("Hogyan alakultak ki a Hold kráterei?")
                 .assistance("test video url")
-                .answer("meteoritok bombázták, nincs légkör ami elfújja,nincs légköt ami megvédje;így született,idegenek ásták,űrharc maradványai,Nap olvasztotta meg,").build();
+                .answer("meteoritok bombázták, nincs légkör ami elfújja,nincs légköt ami megvédje;így született,idegenek ásták,űrharc maradványai,Nap olvasztotta meg").build();
 
         exerciseRepository.save(exercise1);
         exerciseRepository.save(exercise2);
         exerciseRepository.save(exercise3);
 
-        List<Exercise> exercises = new ArrayList<>();
-        exercises.add(exercise1);
-        exercises.add(exercise2);
-        exercises.add(exercise3);
+        List<Exercise> exercises1 = new ArrayList<>();
+        exercises1.add(exercise1);
+        exercises1.add(exercise2);
+        exercises1.add(exercise3);
 
 
 
-        Card card= Card.builder()
+        Card card1= Card.builder()
                 .id(1L)
                 .identificationId("18hg4e1")
                 .profession(profession1)
-                .exercises(exercises)
+                .exercises(exercises1)
                 .build();
 
-        cardRepository.save(card);
+        cardRepository.save(card1);
+
+
+
+
+
+
+
+        try {
+            profPic = Files.readAllBytes(Paths.get("987ki54la.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Profession profession2= Profession.builder().name("Sportoló").description("Hivatásos sportoló. Az a feladata, hogy minél jobb sporteredményeket érjen el a szakágában.").picture(profPic).build();
+        professionRepository.save(profession2);
+
+
+
+
+
+        Exercise exercise5= Exercise.builder()
+                .question("Mi a szerepe az izzadásnak?")
+                .assistance("test video url")
+                .answer("Hűti a testet,").build();
+        Exercise exercise6= Exercise.builder()
+                .question("Meddig bírja az ember víz alatt egy levegővel?")
+                .assistance("test video url")
+                .answer("Átlag ember 30-90 másodperc,Világrekord 24 perc;Nincs levegő így nem bírja,Pár óra,Az első 5 perc nehéz csak").build();
+        Exercise exercise7= Exercise.builder()
+                .question("Milyen vitaminokat fogyassz izomlázra?")
+                .assistance("test video url")
+                .answer("Kálcium,Magnézium,Banán;C vitamin,Vodka,pókagya-macskahája,tejszínes jég").build();
+
+
+        exerciseRepository.save(exercise5);
+        exerciseRepository.save(exercise6);
+        exerciseRepository.save(exercise7);
+
+        List<Exercise> exercises2 = new ArrayList<>();
+        exercises2.add(exercise5);
+        exercises2.add(exercise6);
+        exercises2.add(exercise7);
+
+
+
+        Card card2= Card.builder()
+                .id(2L)
+                .identificationId("987ki54la")
+                .profession(profession2)
+                .exercises(exercises2)
+                .build();
+
+        cardRepository.save(card2);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
