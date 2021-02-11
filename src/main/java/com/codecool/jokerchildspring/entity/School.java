@@ -25,8 +25,5 @@ public class School {
 
     private Long teacherId;
 
-//    @ElementCollection
-//    @Singular
-//    private List<Long> students;
 
 }

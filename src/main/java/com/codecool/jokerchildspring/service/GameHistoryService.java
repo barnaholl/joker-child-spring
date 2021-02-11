@@ -11,9 +11,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.sql.Date;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.springframework.data.util.Pair.toMap;
 
 @Service
 @RequiredArgsConstructor

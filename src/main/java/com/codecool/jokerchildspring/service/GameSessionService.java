@@ -37,4 +37,8 @@ public class GameSessionService {
         Long cardId=getGameSessionByUserId(userId).getCardId();
         return cardRepository.findById(cardId).orElseThrow(EntityNotFoundException::new);
     }
+
+    public Boolean getIsGameSessionActive(Long userId) {
+        return gameSessionRepository.findByUserId(userId).isPresent();
+    }
 }
