@@ -27,9 +27,9 @@ public class GameHistory {
 //    private Card card;
     private Long cardId;
 
-    @JsonManagedReference
-    @OneToOne(cascade = {CascadeType.PERSIST})
-    private Exercise exercise;
+    //@JsonManagedReference
+    //@OneToOne(cascade = {CascadeType.PERSIST})
+    private Long exerciseId;
 
     private Boolean passed=false;
 

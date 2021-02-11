@@ -42,4 +42,9 @@ public class MemberService {
     public void deleteMember(Long id) {
         memberRepository.deleteById(id);
     }
+
+    public Long getXpByMemberById(Long memberId) {
+        Member member = memberRepository.findById(memberId).orElseThrow(EntityNotFoundException::new);
+        return Long.valueOf(member.getExperience());
+    }
 }

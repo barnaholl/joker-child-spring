@@ -8,14 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 @Service
 @RequiredArgsConstructor
@@ -72,6 +69,7 @@ public class DataInitService implements CommandLineRunner {
 
 
 
+
         Card card1= Card.builder()
                 .id(1L)
                 .identificationId("18hg4e1")
@@ -94,9 +92,6 @@ public class DataInitService implements CommandLineRunner {
         }
         Profession profession2= Profession.builder().name("Sportoló").description("Hivatásos sportoló. Az a feladata, hogy minél jobb sporteredményeket érjen el a szakágában.").picture(profPic).build();
         professionRepository.save(profession2);
-
-
-
 
 
         Exercise exercise5= Exercise.builder()
@@ -146,11 +141,10 @@ public class DataInitService implements CommandLineRunner {
 
 
 
-
-
-
         GameHistory gameHistory1= GameHistory.builder()
                 .memberId(0L)
+                .cardId(6L)
+                .exerciseId(3L)
                 .passed(false)
                 .badCount(0)
                 .experience(0)
@@ -160,6 +154,8 @@ public class DataInitService implements CommandLineRunner {
 
         GameHistory gameHistory2= GameHistory.builder()
                 .memberId(0L)
+                .cardId(6L)
+                .exerciseId(4L)
                 .passed(true)
                 .badCount(1)
                 .experience(2)

@@ -22,7 +22,7 @@ public class MemberController {
 
     @GetMapping("/getXpByMemberId")
     public ResponseEntity getXpByMemberId(@RequestParam("id") Long memberId){
-        return ResponseEntity.ok(memberService.getMemberById(memberId));
+        return ResponseEntity.ok(memberService.getXpByMemberById(memberId));
     }
 
     @GetMapping("/all")

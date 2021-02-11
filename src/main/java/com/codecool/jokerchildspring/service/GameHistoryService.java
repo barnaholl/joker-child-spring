@@ -41,7 +41,7 @@ public class GameHistoryService {
         return gh.getPassed();
     }
 
-    public int getPlayedCardsCountByMemberId(Long memberId) {
+    public int getPlayedExercisesCountByMemberId(Long memberId) {
         return gameHistoryRepository.findAllByMemberId(memberId).size();
     }
 
@@ -96,7 +96,7 @@ public class GameHistoryService {
         GameHistory oldGameHistory= gameHistoryRepository.findById(gameHistory.getId()).orElseThrow(EntityNotFoundException::new);
         oldGameHistory.setMemberId(gameHistory.getMemberId());
         oldGameHistory.setCardId(gameHistory.getCardId());
-        oldGameHistory.setExercise(gameHistory.getExercise());
+        oldGameHistory.setExerciseId(gameHistory.getExerciseId());
         oldGameHistory.setPassed(gameHistory.getPassed());
         oldGameHistory.setBadCount(gameHistory.getBadCount());
         oldGameHistory.setPassedDate(gameHistory.getPassedDate());
@@ -106,5 +106,9 @@ public class GameHistoryService {
 
     public void deleteGameHistory(Long id) {
         gameHistoryRepository.deleteById(id);
+    }
+
+    public Long getExperienceByExerciseIdAndUserId(Long exerciseId, Long userId) {
+        return (long) gameHistoryRepository.findByExerciseIdAndMemberId(exerciseId, userId).orElse(GameHistory.builder().experience(0).build()).getExperience();
     }
 }
