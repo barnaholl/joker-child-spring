@@ -41,6 +41,7 @@ public class DataInitService implements CommandLineRunner {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        profPic= "18hg4e1.png".getBytes();
         Profession profession1= Profession.builder().name("Űrhajós").description("Űrhajóval megy az ürbe és ott feladatokat lát el").picture(profPic).build();
         professionRepository.save(profession1);
 
@@ -90,6 +91,7 @@ public class DataInitService implements CommandLineRunner {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        profPic= "images/987ki54la.png".getBytes();
         Profession profession2= Profession.builder().name("Sportoló").description("Hivatásos sportoló. Az a feladata, hogy minél jobb sporteredményeket érjen el a szakágában.").picture(profPic).build();
         professionRepository.save(profession2);
 
