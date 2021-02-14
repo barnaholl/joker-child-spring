@@ -77,8 +77,8 @@ public class GameHistoryController {
         return ResponseEntity.ok("GameHistory deleted with id: "+ id);
     }
 
-    @GetMapping("/getExperienceByExerciseIdAndUserId")
-    public ResponseEntity getExperienceByExerciseIdAndUserId(@RequestParam("exerciseId") Long exerciseId,@RequestParam("userId") Long userId){
-        return ResponseEntity.ok(gameHistoryService.getExperienceByExerciseIdAndUserId(exerciseId,userId));
+    @GetMapping("/getExperienceByExerciseIdAndMemberId")
+    public ResponseEntity getExperienceByExerciseIdAndMemberId(@RequestParam("exerciseId") Long exerciseId,@RequestParam("userId") Long userId){
+        return ResponseEntity.ok(gameHistoryService.getExperienceByExerciseIdAndMemberId(exerciseId,userId));
     }
 }
