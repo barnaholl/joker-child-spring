@@ -1,7 +1,5 @@
 package com.codecool.jokerchildspring.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,25 +16,20 @@ public class GameHistory {
     @GeneratedValue
     private Long id;
 
-//    @JsonBackReference
-//    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Long memberId;
 
-//    @JsonManagedReference
-//    @OneToOne(cascade = {CascadeType.PERSIST})
-//    private Card card;
     private Long cardId;
 
-    //@JsonManagedReference
-    //@OneToOne(cascade = {CascadeType.PERSIST})
     private Long exerciseId;
 
     private Boolean passed=false;
 
-    private int badCount=0;
+    @Column(columnDefinition = "integer default 0")
+    private int badCount;
 
     private Date passedDate;
 
-    private int experience=0;
+    @Column(columnDefinition = "integer default 0")
+    private int experience;
 
 }
