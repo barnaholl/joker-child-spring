@@ -105,7 +105,7 @@ public class GameHistoryService {
         gameHistoryRepository.deleteById(id);
     }
 
-    public Long getExperienceByExerciseIdAndUserId(Long exerciseId, Long userId) {
+    public Long getExperienceByExerciseIdAndMemberId(Long exerciseId, Long userId) {
         return (long) gameHistoryRepository.findByExerciseIdAndMemberId(exerciseId, userId).orElse(GameHistory.builder().experience(0).build()).getExperience();
     }
 
