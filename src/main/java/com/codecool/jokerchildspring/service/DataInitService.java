@@ -98,7 +98,7 @@ public class DataInitService implements CommandLineRunner {
         Exercise exercise5= Exercise.builder()
                 .question("Mi a szerepe az izzadásnak?")
                 .assistance("test video url")
-                .answer("Hűti a testet,").build();
+                .answer("Hűti a testet; Lemossa a koszt").build();
         Exercise exercise6= Exercise.builder()
                 .question("Meddig bírja az ember víz alatt egy levegővel?")
                 .assistance("test video url")
