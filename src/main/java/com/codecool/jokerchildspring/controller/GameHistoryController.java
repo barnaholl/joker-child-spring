@@ -44,9 +44,9 @@ public class GameHistoryController {
 //        return ResponseEntity.ok(gameHistoryService.getPlayedCardsByMember(memberId));
 //    }
 
-    @PutMapping("/validExercise") // require memberId exerciseId passed (True|False)
-    public ResponseEntity putValidExercise(@RequestParam("memberId") Long memberId,@RequestParam("exerciseId") Long execiseId,@RequestParam("passed") boolean passed){
-        return ResponseEntity.ok( gameHistoryService.putValidExercise(memberId,execiseId,passed) );
+    @PutMapping("/validateExercise") // require memberId exerciseId passed (True|False)
+    public ResponseEntity validateExercise(@RequestParam("memberId") Long memberId,@RequestParam("exerciseId") Long exerciseId,@RequestParam("passed") boolean passed){
+        return ResponseEntity.ok( gameHistoryService.validateExercise(memberId,exerciseId,passed) );
     }
 
     @GetMapping("/getSumXpByCardIdAndMemberId")
@@ -80,5 +80,10 @@ public class GameHistoryController {
     @GetMapping("/getExperienceByExerciseIdAndUserId")
     public ResponseEntity getExperienceByExerciseIdAndUserId(@RequestParam("exerciseId") Long exerciseId,@RequestParam("userId") Long userId){
         return ResponseEntity.ok(gameHistoryService.getExperienceByExerciseIdAndUserId(exerciseId,userId));
+    }
+
+    @GetMapping("/getIsGameHistoryExistByExerciseIdAndUserId")
+    public ResponseEntity getIsGameHistoryExistByExerciseIdAndUserId(@RequestParam("exerciseId") Long exerciseId,@RequestParam("userId") Long userId){
+        return ResponseEntity.ok(gameHistoryService.getIsGameHistoryExistByExerciseIdAndUserId(exerciseId,userId));
     }
 }

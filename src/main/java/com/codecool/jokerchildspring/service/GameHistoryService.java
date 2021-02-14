@@ -51,7 +51,7 @@ public class GameHistoryService {
         return gameHistoryRepository.findAll();
     }
 
-    public int putValidExercise(Long memberId,Long exerciseId,boolean passed){
+    public int validateExercise(Long memberId,Long exerciseId,boolean passed){
         GameHistory gameHistory = gameHistoryRepository.findByMemberIdAndExerciseId(memberId,exerciseId).orElseThrow(EntityNotFoundException::new);
         if(!gameHistory.getPassed()) {
             if (passed) {
@@ -68,9 +68,9 @@ public class GameHistoryService {
                         gameHistory.setExperience(1);
                         break;
                 }
-                Member member = memberRepository.findById(memberId).orElseThrow(EntityNotFoundException::new);
-                member.setExperience(member.getExperience() + gameHistory.getExperience());
-                memberRepository.save(member);
+                //Member member = memberRepository.findById(memberId).orElseThrow(EntityNotFoundException::new);
+                //member.setExperience(member.getExperience() + gameHistory.getExperience());
+                //memberRepository.save(member);
             } else {
                 gameHistory.setBadCount(gameHistory.getBadCount() + 1);
             }
@@ -107,5 +107,9 @@ public class GameHistoryService {
 
     public Long getExperienceByExerciseIdAndUserId(Long exerciseId, Long userId) {
         return (long) gameHistoryRepository.findByExerciseIdAndMemberId(exerciseId, userId).orElse(GameHistory.builder().experience(0).build()).getExperience();
+    }
+
+    public Boolean getIsGameHistoryExistByExerciseIdAndUserId(Long exerciseId, Long userId) {
+        return gameHistoryRepository.findByExerciseIdAndMemberId(exerciseId, userId).isPresent();
     }
 }

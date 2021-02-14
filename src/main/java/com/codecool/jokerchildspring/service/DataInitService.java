@@ -35,13 +35,14 @@ public class DataInitService implements CommandLineRunner {
         gameHistoryRepository.deleteAll();
         exerciseRepository.deleteAll();
 
-        byte[] profPic = {1,2};
+        /*byte[] profPic = {1,2};
         try {
             profPic = Files.readAllBytes(Paths.get("18hg4e1.png"));
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        Profession profession1= Profession.builder().name("Űrhajós").description("Űrhajóval megy az ürbe és ott feladatokat lát el").picture(profPic).build();
+        }*/
+
+        Profession profession1= Profession.builder().name("Űrhajós").description("Űrhajóval megy az ürbe és ott feladatokat lát el").build();
         professionRepository.save(profession1);
 
 
@@ -85,12 +86,12 @@ public class DataInitService implements CommandLineRunner {
 
 
 
-        try {
+        /*try {
             profPic = Files.readAllBytes(Paths.get("987ki54la.png"));
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        Profession profession2= Profession.builder().name("Sportoló").description("Hivatásos sportoló. Az a feladata, hogy minél jobb sporteredményeket érjen el a szakágában.").picture(profPic).build();
+        }*/
+        Profession profession2= Profession.builder().name("Sportoló").description("Hivatásos sportoló. Az a feladata, hogy minél jobb sporteredményeket érjen el a szakágában.").build();
         professionRepository.save(profession2);
 
 
@@ -127,44 +128,6 @@ public class DataInitService implements CommandLineRunner {
                 .build();
 
         cardRepository.save(card2);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        GameHistory gameHistory1= GameHistory.builder()
-                .memberId(0L)
-                .cardId(6L)
-                .exerciseId(3L)
-                .passed(false)
-                .badCount(0)
-                .experience(0)
-                .build();
-
-        gameHistoryRepository.save(gameHistory1);
-
-        GameHistory gameHistory2= GameHistory.builder()
-                .memberId(0L)
-                .cardId(6L)
-                .exerciseId(4L)
-                .passed(true)
-                .badCount(1)
-                .experience(2)
-                .passedDate(Date.valueOf("2021-01-09"))
-                .build();
-
-        gameHistoryRepository.save(gameHistory2);
-
-
 
 
         Member student= Member.builder()
