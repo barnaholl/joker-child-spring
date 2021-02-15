@@ -141,7 +141,7 @@ public class DataInitService implements CommandLineRunner {
                 .email("best@student.com")
                 .password("1234")
                 .role(MemberRole.STUDENT)
-                .experience(2)
+                .experience(0)
                 .build();
 
         memberRepository.save(student);
