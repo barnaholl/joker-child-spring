@@ -18,4 +18,6 @@ public interface GameHistoryRepository extends JpaRepository<GameHistory,Long> {
     List<GameHistory> findAllByMemberId(Long memberId);
 
     List<GameHistory> findByMemberIdAndCardId(Long memberId, Long cardId);
+
+    void deleteAllByMemberId(Long userId);
 }
