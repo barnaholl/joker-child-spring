@@ -1,11 +1,9 @@
 package com.codecool.jokerchildspring.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,13 +21,11 @@ public class Exercise {
     private String answer;
 
     @JsonBackReference
+    @ToString.Exclude
     @ManyToOne()
     private Card card;
 
     private String assistance;
 
-//    @JsonBackReference
-//    @OneToOne(cascade = {CascadeType.PERSIST})
-//    private GameHistory gameHistory;
 
 }

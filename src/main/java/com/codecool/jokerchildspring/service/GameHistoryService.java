@@ -68,9 +68,9 @@ public class GameHistoryService {
                         gameHistory.setExperience(1);
                         break;
                 }
-                //Member member = memberRepository.findById(memberId).orElseThrow(EntityNotFoundException::new);
-                //member.setExperience(member.getExperience() + gameHistory.getExperience());
-                //memberRepository.save(member);
+                Member member = memberRepository.findById(memberId).orElseThrow(EntityNotFoundException::new);
+                member.setExperience(member.getExperience() + gameHistory.getExperience());
+                memberRepository.save(member);
             } else {
                 gameHistory.setBadCount(gameHistory.getBadCount() + 1);
             }
@@ -111,5 +111,9 @@ public class GameHistoryService {
 
     public Boolean getIsGameHistoryExistByExerciseIdAndUserId(Long exerciseId, Long userId) {
         return gameHistoryRepository.findByExerciseIdAndMemberId(exerciseId, userId).isPresent();
+    }
+
+    public void deleteAllGameHistoryByUserId(Long userId) {
+        gameHistoryRepository.deleteAllByMemberId(userId);
     }
 }

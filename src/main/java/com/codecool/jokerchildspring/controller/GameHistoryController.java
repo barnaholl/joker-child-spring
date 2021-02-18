@@ -3,7 +3,9 @@ package com.codecool.jokerchildspring.controller;
 import com.codecool.jokerchildspring.entity.GameHistory;
 import com.codecool.jokerchildspring.service.GameHistoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.annotation.Transient;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -85,5 +87,12 @@ public class GameHistoryController {
     @GetMapping("/getIsGameHistoryExistByExerciseIdAndUserId")
     public ResponseEntity getIsGameHistoryExistByExerciseIdAndUserId(@RequestParam("exerciseId") Long exerciseId,@RequestParam("userId") Long userId){
         return ResponseEntity.ok(gameHistoryService.getIsGameHistoryExistByExerciseIdAndUserId(exerciseId,userId));
+    }
+
+    @Transactional
+    @DeleteMapping("/allGameHistoryByUserId")
+    public ResponseEntity deleteAllGameHistoryByUserId(@RequestParam("userId") Long userId){
+        gameHistoryService.deleteAllGameHistoryByUserId(userId);
+        return ResponseEntity.ok("game history cleared at userId: "+userId);
     }
 }

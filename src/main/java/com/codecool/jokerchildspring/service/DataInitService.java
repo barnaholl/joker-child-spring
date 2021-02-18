@@ -141,12 +141,12 @@ public class DataInitService implements CommandLineRunner {
                 .email("best@student.com")
                 .password("1234")
                 .role(MemberRole.STUDENT)
-                .experience(2)
+                .experience(0)
                 .build();
 
         memberRepository.save(student);
 
-        Member teacher= Member.builder()
+        /*Member teacher= Member.builder()
                 .id(1L)
                 .name("Dummy Teacher")
                 .nick("BestTeacherEver")
@@ -158,6 +158,7 @@ public class DataInitService implements CommandLineRunner {
                 .build();
 
         memberRepository.save(teacher);
+        */
 
 
         School school= School.builder()

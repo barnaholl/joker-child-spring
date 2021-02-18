@@ -42,4 +42,5 @@ public class GameSessionController {
     public ResponseEntity getIsGameSessionActive(@RequestParam("userId") Long userId){
         return ResponseEntity.ok(gameSessionService.getIsGameSessionActive(userId));
     }
+
 }
