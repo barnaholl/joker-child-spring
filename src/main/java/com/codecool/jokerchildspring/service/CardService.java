@@ -1,7 +1,9 @@
 package com.codecool.jokerchildspring.service;
 
 import com.codecool.jokerchildspring.entity.Card;
+import com.codecool.jokerchildspring.entity.Profession;
 import com.codecool.jokerchildspring.repository.CardRepository;
+import com.codecool.jokerchildspring.repository.ProfessionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ import java.util.List;
 public class CardService {
 
     private final CardRepository cardRepository;
+    private final ProfessionRepository professionRepository;
 
     public Card getCardById(Long id) {
         return cardRepository.findById(id).orElseThrow(EntityNotFoundException::new);
@@ -24,6 +27,14 @@ public class CardService {
 
     public void createCard(Card card) {
         cardRepository.save(card);
+    }
+
+    public void createCardWithExistingProfession(Card card,Long professionId) {
+        Profession profession=professionRepository.findById(professionId).orElseThrow(EntityNotFoundException::new);
+
+        card.setProfession(profession);
+        cardRepository.save(card);
+
     }
 
     public void updateCard(Card card) {

@@ -1,6 +1,5 @@
 package com.codecool.jokerchildspring.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -21,17 +20,15 @@ public class Card {
     @Column(unique = true)
     private String identificationId;
 
+    @ToString.Exclude
     @JsonManagedReference
     @Singular
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Exercise> exercises;
 
-    @JsonManagedReference
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne()
     private Profession profession;
-
-//    @JsonBackReference
-//    @OneToOne(cascade = {CascadeType.PERSIST})
-//    private GameHistory gameHistory;
 
 }
