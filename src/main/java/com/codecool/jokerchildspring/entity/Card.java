@@ -20,8 +20,6 @@ public class Card {
     @Column(unique = true)
     private String identificationId;
 
-
-
     @ToString.Exclude
     @JsonManagedReference
     @Singular
