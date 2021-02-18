@@ -1,15 +1,9 @@
 package com.codecool.jokerchildspring.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,12 +17,13 @@ public class Profession {
 
     private String name;
 
-    private byte[] picture;
+    private String picture;
 
     private String description;
 
-    @JsonBackReference
-    @OneToOne(mappedBy = "profession")
-    private Card card;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany()
+    private List<Card> card;
 
 }
