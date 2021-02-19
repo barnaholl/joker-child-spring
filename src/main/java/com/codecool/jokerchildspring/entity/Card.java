@@ -23,7 +23,7 @@ public class Card {
     @ToString.Exclude
     @JsonManagedReference
     @Singular
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
     private List<Exercise> exercises;
 
     @ToString.Exclude
