@@ -42,6 +42,18 @@ public class MemberController {
         return ResponseEntity.ok("Member updated to:"+member);
     }
 
+    @PutMapping("/putXp")
+    public ResponseEntity putXpToMember(@RequestParam("memberId") Long memberId,@RequestParam("experience") int experience){
+        memberService.putXpToMember(memberId,experience);
+        return ResponseEntity.ok("Member XP updated:"+memberId);
+    }
+
+    @DeleteMapping("/resetMember")
+    public ResponseEntity resetMember(@RequestParam("id") Long id){
+        memberService.resetMember(id);
+        return ResponseEntity.ok("Member reset with id: "+ id);
+    }
+
     @DeleteMapping("/")
     public ResponseEntity deleteMember(@RequestParam("id") Long id){
         memberService.deleteMember(id);
