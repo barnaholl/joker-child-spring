@@ -35,13 +35,7 @@ public class DataInitService implements CommandLineRunner {
         gameHistoryRepository.deleteAll();
         exerciseRepository.deleteAll();
 
-        /*byte[] profPic = {1,2};
-        try {
-            profPic = Files.readAllBytes(Paths.get("18hg4e1.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
 
-        }*/
 
         Profession profession1= Profession.builder().name("Űrhajós").description("Űrhajóval megy az ürbe és ott feladatokat lát el").build();
         professionRepository.save(profession1);
@@ -87,11 +81,6 @@ public class DataInitService implements CommandLineRunner {
 
 
 
-        /*try {
-            profPic = Files.readAllBytes(Paths.get("987ki54la.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
       
         Profession profession2= Profession.builder().name("Sportoló").description("Hivatásos sportoló. Az a feladata, hogy minél jobb sporteredményeket érjen el a szakágában.").build();
         professionRepository.save(profession2);
