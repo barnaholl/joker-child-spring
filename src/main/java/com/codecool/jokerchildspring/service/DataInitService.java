@@ -28,6 +28,8 @@ public class DataInitService implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        //Reset db
+
         cardRepository.deleteAll();
         schoolRepository.deleteAll();
         memberRepository.deleteAll();
@@ -74,12 +76,6 @@ public class DataInitService implements CommandLineRunner {
                 .build();
 
         cardRepository.save(card1);
-
-
-
-
-
-
 
       
         Profession profession2= Profession.builder().name("Sportoló").description("Hivatásos sportoló. Az a feladata, hogy minél jobb sporteredményeket érjen el a szakágában.").build();
