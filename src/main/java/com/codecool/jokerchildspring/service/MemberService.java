@@ -47,17 +47,16 @@ public class MemberService {
 
     public Long getXpByMemberById(Long memberId) {
         Member member = memberRepository.findById(memberId).orElseThrow(EntityNotFoundException::new);
-        return Long.valueOf(member.getExperience());
+        return member.getExperience();
     }
 
-    public void putXpToMember(long memberId,int experience){
+    public void updateExperience(Long memberId,Long experience){
         Member member = memberRepository.findById(memberId).orElseThrow(EntityNotFoundException::new);
         member.setExperience(experience);
     }
 
     public void resetMember(long memberId){
         gameHistoryRepository.deleteAllByMemberId(memberId);
-        putXpToMember(memberId,0);
-
+        updateExperience(memberId,0L);
     }
 }
