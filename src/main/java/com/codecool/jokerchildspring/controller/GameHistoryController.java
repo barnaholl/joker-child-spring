@@ -21,13 +21,14 @@ public class GameHistoryController {
     }
 
     @GetMapping("/getPlayedExercisesCountByMemberId")
-    public ResponseEntity getPlayedCardsCountByMemberId(@RequestParam("memberId") Long memberId){
+    public ResponseEntity<Integer> getPlayedCardsCountByMemberId(@RequestParam("memberId") Long memberId){
         return ResponseEntity.ok(gameHistoryService.getPlayedExercisesCountByMemberId(memberId));
     }
 
-    @PutMapping("/validateExercise") // require memberId exerciseId passed (True|False)
-    public ResponseEntity validateExercise(@RequestParam("memberId") Long memberId,@RequestParam("exerciseId") Long exerciseId,@RequestParam("passed") boolean passed){
-        return ResponseEntity.ok( gameHistoryService.validateExercise(memberId,exerciseId,passed) );
+    @PutMapping("/validateExercise")
+    public ResponseEntity<String> validateExercise(@RequestParam("memberId") Long memberId,@RequestParam("exerciseId") Long exerciseId,@RequestParam("passed") boolean passed){
+
+        return ResponseEntity.ok(gameHistoryService.validateExercise(memberId,exerciseId,passed));
     }
 
     @GetMapping("/getSumXpByCardIdAndMemberId")
@@ -37,7 +38,7 @@ public class GameHistoryController {
 
     @GetMapping("/all")
     public ResponseEntity getAllGameHistories(){
-        return ResponseEntity.ok(gameHistoryService.getAllGameHistorys());
+        return ResponseEntity.ok(gameHistoryService.getAllGameHistories());
     }
 
     @PostMapping("/")

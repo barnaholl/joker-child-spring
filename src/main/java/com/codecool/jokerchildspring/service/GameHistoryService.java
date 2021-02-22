@@ -32,15 +32,15 @@ public class GameHistoryService {
         return gh.getPassed();
     }
 
-    public int getPlayedExercisesCountByMemberId(Long memberId) {
+    public Integer getPlayedExercisesCountByMemberId(Long memberId) {
         return gameHistoryRepository.findAllByMemberId(memberId).size();
     }
 
-    public List<GameHistory> getAllGameHistorys() {
+    public List<GameHistory> getAllGameHistories() {
         return gameHistoryRepository.findAll();
     }
 
-    public int validateExercise(Long memberId,Long exerciseId,boolean passed){
+    public String validateExercise(Long memberId,Long exerciseId,Boolean passed){
         GameHistory gameHistory = gameHistoryRepository.findByMemberIdAndExerciseId(memberId,exerciseId).orElseThrow(EntityNotFoundException::new);
         if(!gameHistory.getPassed()) {
             if (passed) {
@@ -60,12 +60,16 @@ public class GameHistoryService {
                 Member member = memberRepository.findById(memberId).orElseThrow(EntityNotFoundException::new);
                 member.setExperience(member.getExperience() + gameHistory.getExperience());
                 memberRepository.save(member);
+                gameHistoryRepository.save(gameHistory);
+
+                return "Exercise is passed at try "+gameHistory.getBadCount()+1+", with and "+member.getName()+" is earned "+gameHistory.getExperience()+" experience";
             } else {
                 gameHistory.setBadCount(gameHistory.getBadCount() + 1);
+                gameHistoryRepository.save(gameHistory);
+                return "Exercise is failed, number of bad tries:"+gameHistory.getBadCount();
             }
-            gameHistoryRepository.save(gameHistory);
         }
-        return gameHistory.getExperience();
+        return "Exercise was already passed";
     }
 
     public int getSumXpByMemberIdAndCardId(Long memberId, Long cardId){
