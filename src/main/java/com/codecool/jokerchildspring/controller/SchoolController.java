@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/school")
@@ -15,29 +17,29 @@ public class SchoolController {
     private final SchoolService schoolService;
 
     @GetMapping("/")
-    public ResponseEntity getSchoolById(@RequestParam("id") Long id){
+    public ResponseEntity<School> getSchoolById(@RequestParam("id") Long id){
         return ResponseEntity.ok(schoolService.getSchoolById(id));
     }
 
     @GetMapping("/all")
-    public ResponseEntity getAllSchools(){
+    public ResponseEntity<List<School>> getAllSchools(){
         return ResponseEntity.ok(schoolService.getAllSchools());
     }
 
     @PostMapping("/")
-    public ResponseEntity createSchool(@RequestBody School school){
+    public ResponseEntity<String> createSchool(@RequestBody School school){
         schoolService.createSchool(school);
         return ResponseEntity.ok("School created"+school);
     }
 
     @PutMapping("/")
-    public ResponseEntity updateSchool(@RequestBody School school){
+    public ResponseEntity<String> updateSchool(@RequestBody School school){
         schoolService.updateSchool(school);
         return ResponseEntity.ok("School updated to:"+school);
     }
 
     @DeleteMapping("/")
-    public ResponseEntity deleteSchool(@RequestParam("id") Long id){
+    public ResponseEntity<String> deleteSchool(@RequestParam("id") Long id){
         schoolService.deleteSchool(id);
         return ResponseEntity.ok("School deleted with id: "+ id);
     }
