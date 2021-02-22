@@ -1,6 +1,5 @@
 package com.codecool.jokerchildspring.service;
 
-import com.codecool.jokerchildspring.entity.Card;
 import com.codecool.jokerchildspring.entity.GameHistory;
 import com.codecool.jokerchildspring.entity.Member;
 import com.codecool.jokerchildspring.repository.GameHistoryRepository;
@@ -23,11 +22,6 @@ public class GameHistoryService {
         return gameHistoryRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
-//    public int getXpByMember(Long memberId){
-//        GameHistory gh = gameHistoryRepository.findByMemberId(memberId).orElseThrow(EntityNotFoundException::new);
-//        return gh.getExperience();
-//    }
-
     public int getBadCountByMemberIdAndExerciseId(Long memberId, Long exerciseId){
         GameHistory gh = gameHistoryRepository.findByMemberIdAndExerciseId(memberId,exerciseId).orElseThrow(EntityNotFoundException::new);
         return gh.getBadCount();
@@ -41,11 +35,6 @@ public class GameHistoryService {
     public int getPlayedExercisesCountByMemberId(Long memberId) {
         return gameHistoryRepository.findAllByMemberId(memberId).size();
     }
-
-//    public List<Card> getPlayedCardsByMember(Long memberId) {
-//        List<Card> gh = gameHistoryRepository.findAllByMemberId(memberId).filter(ghbm -> ghbm.getPassed()).map(ghbm -> ghbm.getCard());
-//        return gh;
-//    }
 
     public List<GameHistory> getAllGameHistorys() {
         return gameHistoryRepository.findAll();

@@ -16,7 +16,7 @@ public class GameHistoryController {
     private final GameHistoryService gameHistoryService;
 
     @GetMapping("/")
-    public ResponseEntity getGameHistoryById(@RequestParam("id") Long id){
+    public ResponseEntity<GameHistory> getGameHistoryById(@RequestParam("id") Long id){
         return ResponseEntity.ok(gameHistoryService.getGameHistoryById(id));
     }
 
