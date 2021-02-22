@@ -20,16 +20,6 @@ public class GameHistoryController {
         return ResponseEntity.ok(gameHistoryService.getGameHistoryById(id));
     }
 
-    @GetMapping("/getBadCountByMemberIdAndExerciseId")
-    public ResponseEntity getBadCountByMemberIdAndExerciseId(@RequestParam("memberId") Long memberId,@RequestParam("exerciseId") Long execiseId){
-        return ResponseEntity.ok(gameHistoryService.getBadCountByMemberIdAndExerciseId(memberId,execiseId));
-    }
-
-    @GetMapping("/getPassedByMemberIdAndExerciseId")
-    public ResponseEntity getPassedByMemberIdAndExerciseId(@RequestParam("memberId") Long memberId,@RequestParam("exerciseId") Long execiseId){
-        return ResponseEntity.ok(gameHistoryService.getPassedByMemberIdAndExerciseId(memberId,execiseId));
-    }
-
     @GetMapping("/getPlayedExercisesCountByMemberId")
     public ResponseEntity getPlayedCardsCountByMemberId(@RequestParam("memberId") Long memberId){
         return ResponseEntity.ok(gameHistoryService.getPlayedExercisesCountByMemberId(memberId));
@@ -46,7 +36,7 @@ public class GameHistoryController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity getAllGameHistorys(){
+    public ResponseEntity getAllGameHistories(){
         return ResponseEntity.ok(gameHistoryService.getAllGameHistorys());
     }
 
