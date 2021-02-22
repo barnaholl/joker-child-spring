@@ -3,7 +3,6 @@ package com.codecool.jokerchildspring.service;
 import com.codecool.jokerchildspring.entity.Member;
 import com.codecool.jokerchildspring.repository.GameHistoryRepository;
 import com.codecool.jokerchildspring.repository.MemberRepository;
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
