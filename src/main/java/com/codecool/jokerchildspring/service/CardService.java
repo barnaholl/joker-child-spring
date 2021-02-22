@@ -48,11 +48,12 @@ public class CardService {
 
         List<Exercise> newExercises=card.getExercises();
         List<Exercise> oldExercises=oldCard.getExercises();
-            for (int i = 0; i < newExercises.size(); i++) {
-                oldExercises.get(i).setQuestion(newExercises.get(i).getQuestion());
-                oldExercises.get(i).setAnswer(newExercises.get(i).getAnswer());
-                oldExercises.get(i).setAssistance(newExercises.get(i).getAssistance());
-            }
+
+        for (int i = 0; i < newExercises.size(); i++) {
+            oldExercises.get(i).setQuestion(newExercises.get(i).getQuestion());
+            oldExercises.get(i).setAnswer(newExercises.get(i).getAnswer());
+            oldExercises.get(i).setAssistance(newExercises.get(i).getAssistance());
+        }
 
         oldCard.setProfession(profession);
         oldCard.setExercises(oldExercises);

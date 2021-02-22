@@ -3,7 +3,6 @@ package com.codecool.jokerchildspring.controller;
 import com.codecool.jokerchildspring.entity.GameHistory;
 import com.codecool.jokerchildspring.service.GameHistoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.annotation.Transient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +20,6 @@ public class GameHistoryController {
         return ResponseEntity.ok(gameHistoryService.getGameHistoryById(id));
     }
 
-//    @GetMapping("/getXpByMember") // átraktam Memberbe
-//    public ResponseEntity getXpByMember(@RequestParam("memberId") Long memberId){
-//        return ResponseEntity.ok(gameHistoryService.getXpByMember(memberId));
-//    }
-
     @GetMapping("/getBadCountByMemberIdAndExerciseId")
     public ResponseEntity getBadCountByMemberIdAndExerciseId(@RequestParam("memberId") Long memberId,@RequestParam("exerciseId") Long execiseId){
         return ResponseEntity.ok(gameHistoryService.getBadCountByMemberIdAndExerciseId(memberId,execiseId));
@@ -40,11 +34,6 @@ public class GameHistoryController {
     public ResponseEntity getPlayedCardsCountByMemberId(@RequestParam("memberId") Long memberId){
         return ResponseEntity.ok(gameHistoryService.getPlayedExercisesCountByMemberId(memberId));
     }
-
-//    @GetMapping("/getPlayedCardsByMember")   // nem a kártyák kellettek, hanem csak a db
-//    public ResponseEntity getPlayedCardsByMember(@RequestParam("memberId") Long memberId){
-//        return ResponseEntity.ok(gameHistoryService.getPlayedCardsByMember(memberId));
-//    }
 
     @PutMapping("/validateExercise") // require memberId exerciseId passed (True|False)
     public ResponseEntity validateExercise(@RequestParam("memberId") Long memberId,@RequestParam("exerciseId") Long exerciseId,@RequestParam("passed") boolean passed){
