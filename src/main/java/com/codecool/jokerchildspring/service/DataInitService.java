@@ -26,9 +26,7 @@ public class DataInitService implements CommandLineRunner {
     private final ExerciseRepository exerciseRepository;
 
     @Override
-    public void run(String... args) throws Exception {
-
-        //Reset db
+    public void run(String... args){
 
         cardRepository.deleteAll();
         schoolRepository.deleteAll();
@@ -36,8 +34,6 @@ public class DataInitService implements CommandLineRunner {
         professionRepository.deleteAll();
         gameHistoryRepository.deleteAll();
         exerciseRepository.deleteAll();
-
-
 
         Profession profession1= Profession.builder().name("Űrhajós").description("Űrhajóval megy az ürbe és ott feladatokat lát el").build();
         professionRepository.save(profession1);
@@ -126,25 +122,10 @@ public class DataInitService implements CommandLineRunner {
                 .email("best@student.com")
                 .password("1234")
                 .role(MemberRole.STUDENT)
-                .experience(0)
+                .experience(0L)
                 .build();
 
         memberRepository.save(student);
-
-        /*Member teacher= Member.builder()
-                .id(1L)
-                .name("Dummy Teacher")
-                .nick("BestTeacherEver")
-                .birthDate(Date.valueOf("1996-09-09"))
-                .email("best@teacher.com")
-                .password("1234")
-                .role(MemberRole.TEACHER)
-                .experience(2)
-                .build();
-
-        memberRepository.save(teacher);
-        */
-
 
         School school= School.builder()
                 .city("Budapest")
@@ -154,9 +135,6 @@ public class DataInitService implements CommandLineRunner {
                 .build();
 
         schoolRepository.save(school);
-
-
-
 
     }
 }
