@@ -34,6 +34,7 @@ public class ProfessionService {
         Profession oldProfession=professionRepository.findById(profession.getId()).orElseThrow(EntityNotFoundException::new);
         oldProfession.setName(profession.getName());
         oldProfession.setPicture(profession.getPicture());
+        oldProfession.setDescription(profession.getDescription());
         professionRepository.save(oldProfession);
     }
 
