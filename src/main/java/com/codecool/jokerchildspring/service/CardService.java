@@ -26,24 +26,12 @@ public class CardService {
         return cardRepository.findAll();
     }
 
-    public void createCard(Card card) {
-        cardRepository.save(card);
-    }
-
-    public void createCardWithExistingProfession(Card card,Long professionId) {
+    public void createCard(Card card,Long professionId) {
         Profession profession=professionRepository.findById(professionId).orElseThrow(EntityNotFoundException::new);
 
         card.setProfession(profession);
         cardRepository.save(card);
 
-    }
-
-    public void updateCard(Card card) {
-        Card oldCard=cardRepository.findById(card.getId()).orElseThrow(EntityNotFoundException::new);
-        oldCard.setIdentificationId(card.getIdentificationId());
-        oldCard.setProfession(card.getProfession());
-        oldCard.setExercises(card.getExercises());
-        cardRepository.save(oldCard);
     }
 
     public void deleteCard(Long id) {
@@ -54,7 +42,7 @@ public class CardService {
         return cardRepository.findByIdentificationId(identificationId);
     }
 
-    public void updateCardWithExistingProfession(Card card, Long professionId) {
+    public void updateCard(Card card, Long professionId) {
         Card oldCard=cardRepository.findById(card.getId()).orElseThrow(EntityNotFoundException::new);
         Profession profession=professionRepository.findById(professionId).orElseThrow(EntityNotFoundException::new);
 

@@ -32,27 +32,15 @@ public class CardController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> createCard(@RequestBody  Card card){
-        cardService.createCard(card);
-        return ResponseEntity.ok("Card created"+card);
-    }
-
-    @PostMapping("/withProfession")
-    public ResponseEntity<String> createCardWithExistingProfession(@RequestParam("professionId") Long professionId,@RequestBody  Card card){
-        cardService.createCardWithExistingProfession(card,professionId);
+    public ResponseEntity<String> createCard(@RequestParam("professionId") Long professionId,@RequestBody  Card card){
+        cardService.createCard(card,professionId);
         return ResponseEntity.ok("Card created"+card+" with professionId:"+professionId);
     }
 
-    @PutMapping("/withProfession")
-    public ResponseEntity<String> updateCardWithExistingProfession(@RequestParam("professionId") Long professionId,@RequestBody  Card card){
-        cardService.updateCardWithExistingProfession(card,professionId);
-        return ResponseEntity.ok("Card updated"+card+" with professionId:"+professionId);
-    }
-
     @PutMapping("/")
-    public ResponseEntity<String> updateCard(@RequestBody Card card){
-        cardService.updateCard(card);
-        return ResponseEntity.ok("Card updated to:"+card);
+    public ResponseEntity<String> updateCard(@RequestParam("professionId") Long professionId,@RequestBody  Card card){
+        cardService.updateCard(card,professionId);
+        return ResponseEntity.ok("Card updated"+card+" with professionId:"+professionId);
     }
 
     @DeleteMapping("/")
