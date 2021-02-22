@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/gameHistory")
@@ -32,46 +34,46 @@ public class GameHistoryController {
     }
 
     @GetMapping("/getSumXpByCardIdAndMemberId")
-    public ResponseEntity getSumXpByCardIdAndMemberId(@RequestParam("memberId") Long memberId,@RequestParam("cardId") Long cardId){
+    public ResponseEntity<Integer> getSumXpByCardIdAndMemberId(@RequestParam("memberId") Long memberId,@RequestParam("cardId") Long cardId){
         return ResponseEntity.ok( gameHistoryService.getSumXpByMemberIdAndCardId(memberId,cardId) );
     }
 
     @GetMapping("/all")
-    public ResponseEntity getAllGameHistories(){
+    public ResponseEntity<List<GameHistory>> getAllGameHistories(){
         return ResponseEntity.ok(gameHistoryService.getAllGameHistories());
     }
 
     @PostMapping("/")
-    public ResponseEntity createGameHistory(@RequestBody GameHistory gameHistory){
+    public ResponseEntity<String> createGameHistory(@RequestBody GameHistory gameHistory){
         gameHistoryService.createGameHistory(gameHistory);
-        return ResponseEntity.ok("GameHistory created"+gameHistory);
+        return ResponseEntity.ok("GameHistory created "+gameHistory);
     }
 
     @PutMapping("/")
-    public ResponseEntity updateGameHistory(@RequestBody GameHistory gameHistory){
+    public ResponseEntity<String> updateGameHistory(@RequestBody GameHistory gameHistory){
         gameHistoryService.updateGameHistory(gameHistory);
         return ResponseEntity.ok("GameHistory updated to:"+gameHistory);
     }
 
     @DeleteMapping("/")
-    public ResponseEntity deleteGameHistory(@RequestParam("id") Long id){
+    public ResponseEntity<String> deleteGameHistory(@RequestParam("id") Long id){
         gameHistoryService.deleteGameHistory(id);
         return ResponseEntity.ok("GameHistory deleted with id: "+ id);
     }
 
     @GetMapping("/getExperienceByExerciseIdAndMemberId")
-    public ResponseEntity getExperienceByExerciseIdAndMemberId(@RequestParam("exerciseId") Long exerciseId,@RequestParam("userId") Long userId){
+    public ResponseEntity<Integer> getExperienceByExerciseIdAndMemberId(@RequestParam("exerciseId") Long exerciseId,@RequestParam("userId") Long userId){
         return ResponseEntity.ok(gameHistoryService.getExperienceByExerciseIdAndMemberId(exerciseId,userId));
     }
 
     @GetMapping("/getIsGameHistoryExistByExerciseIdAndUserId")
-    public ResponseEntity getIsGameHistoryExistByExerciseIdAndUserId(@RequestParam("exerciseId") Long exerciseId,@RequestParam("userId") Long userId){
+    public ResponseEntity<Boolean> getIsGameHistoryExistByExerciseIdAndUserId(@RequestParam("exerciseId") Long exerciseId,@RequestParam("userId") Long userId){
         return ResponseEntity.ok(gameHistoryService.getIsGameHistoryExistByExerciseIdAndUserId(exerciseId,userId));
     }
 
     @Transactional
     @DeleteMapping("/allGameHistoryByUserId")
-    public ResponseEntity deleteAllGameHistoryByUserId(@RequestParam("userId") Long userId){
+    public ResponseEntity<String> deleteAllGameHistoryByUserId(@RequestParam("userId") Long userId){
         gameHistoryService.deleteAllGameHistoryByUserId(userId);
         return ResponseEntity.ok("game history cleared at userId: "+userId);
     }

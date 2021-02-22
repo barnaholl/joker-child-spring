@@ -72,17 +72,15 @@ public class GameHistoryService {
         return "Exercise was already passed";
     }
 
-    public int getSumXpByMemberIdAndCardId(Long memberId, Long cardId){
+    public Integer getSumXpByMemberIdAndCardId(Long memberId, Long cardId){
         return gameHistoryRepository.findByMemberIdAndCardId(memberId,cardId).stream().map(item -> item.getExperience()).reduce(0, Integer::sum);
     }
 
     public void createGameHistory(GameHistory gameHistory) {
-        //TODO:RoleCheck
         gameHistoryRepository.save(gameHistory);
     }
 
     public void updateGameHistory(GameHistory gameHistory) {
-        //TODO:RoleCheck
         GameHistory oldGameHistory= gameHistoryRepository.findById(gameHistory.getId()).orElseThrow(EntityNotFoundException::new);
         oldGameHistory.setMemberId(gameHistory.getMemberId());
         oldGameHistory.setCardId(gameHistory.getCardId());
@@ -98,8 +96,8 @@ public class GameHistoryService {
         gameHistoryRepository.deleteById(id);
     }
 
-    public Long getExperienceByExerciseIdAndMemberId(Long exerciseId, Long userId) {
-        return (long) gameHistoryRepository.findByExerciseIdAndMemberId(exerciseId, userId).orElse(GameHistory.builder().experience(0).build()).getExperience();
+    public Integer getExperienceByExerciseIdAndMemberId(Long exerciseId, Long userId) {
+        return gameHistoryRepository.findByExerciseIdAndMemberId(exerciseId, userId).orElse(GameHistory.builder().experience(0).build()).getExperience();
     }
 
     public Boolean getIsGameHistoryExistByExerciseIdAndUserId(Long exerciseId, Long userId) {
