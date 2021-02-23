@@ -1,9 +1,7 @@
 package com.codecool.jokerchildspring.controller;
 
 import com.codecool.jokerchildspring.entity.Card;
-import com.codecool.jokerchildspring.repository.CardRepository;
 import com.codecool.jokerchildspring.service.CardService;
-import com.codecool.jokerchildspring.service.DataFillService;
 import com.codecool.jokerchildspring.service.DataInitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class CardController {
 
     private final CardService cardService;
-    private final DataFillService dataFillService;
+    private final DataInitService dataInitService;
 
 
     @GetMapping("/")
@@ -61,7 +59,7 @@ public class CardController {
     @GetMapping("/dummy")
     public ResponseEntity makeDummy() {
         try {
-            dataFillService.fill();
+            dataInitService.run(new String[]{});
         }catch (Exception e){
             e.printStackTrace();
         }
