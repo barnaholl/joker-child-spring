@@ -46,6 +46,12 @@ public class CardController {
         return ResponseEntity.ok("Card created"+card+" with professionId:"+professionId);
     }
 
+    @PutMapping("/withProfession")
+    public ResponseEntity updateCardWithExistingProfession(@RequestParam("professionId") Long professionId,@RequestBody  Card card){
+        cardService.updateCardWithExistingProfession(card,professionId);
+        return ResponseEntity.ok("Card updated"+card+" with professionId:"+professionId);
+    }
+
     @PutMapping("/")
     public ResponseEntity updateCard(@RequestBody Card card){
         cardService.updateCard(card);
