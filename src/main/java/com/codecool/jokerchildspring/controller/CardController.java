@@ -1,7 +1,10 @@
 package com.codecool.jokerchildspring.controller;
 
 import com.codecool.jokerchildspring.entity.Card;
+import com.codecool.jokerchildspring.repository.CardRepository;
 import com.codecool.jokerchildspring.service.CardService;
+import com.codecool.jokerchildspring.service.DataFillService;
+import com.codecool.jokerchildspring.service.DataInitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 public class CardController {
 
     private final CardService cardService;
+    private final DataFillService dataFillService;
+
 
     @GetMapping("/")
     public ResponseEntity getCardById(@RequestParam("id") Long id){
@@ -45,6 +50,16 @@ public class CardController {
     public ResponseEntity updateCard(@RequestBody Card card){
         cardService.updateCard(card);
         return ResponseEntity.ok("Card updated to:"+card);
+    }
+
+    @GetMapping("/dummy")
+    public ResponseEntity makeDummy() {
+        try {
+            dataFillService.fill();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok("Created dummy data.");
     }
 
     @DeleteMapping("/")

@@ -3,7 +3,7 @@ package com.codecool.jokerchildspring.service;
 import com.codecool.jokerchildspring.entity.*;
 import com.codecool.jokerchildspring.model.MemberRole;
 import com.codecool.jokerchildspring.repository.*;
-import lombok.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DataInitService implements CommandLineRunner {
+@RequiredArgsConstructor
+public class DataFillService {
 
     private final CardRepository cardRepository;
     private final SchoolRepository schoolRepository;
@@ -21,17 +22,8 @@ public class DataInitService implements CommandLineRunner {
     private final GameHistoryRepository gameHistoryRepository;
     private final ExerciseRepository exerciseRepository;
 
-    public DataInitService(CardRepository cardRepository, SchoolRepository schoolRepository, MemberRepository memberRepository, ProfessionRepository professionRepository, GameHistoryRepository gameHistoryRepository, ExerciseRepository exerciseRepository) {
-        this.cardRepository = cardRepository;
-        this.schoolRepository = schoolRepository;
-        this.memberRepository = memberRepository;
-        this.professionRepository = professionRepository;
-        this.gameHistoryRepository = gameHistoryRepository;
-        this.exerciseRepository = exerciseRepository;
-    }
 
-    @Override
-    public void run(String... args) throws Exception {
+    public void fill() throws Exception {
 
         cardRepository.deleteAll();
         schoolRepository.deleteAll();
