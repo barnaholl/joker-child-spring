@@ -57,7 +57,7 @@ public class CardService {
     public void updateCardWithExistingProfession(Card card, Long professionId) {
         Card oldCard=cardRepository.findById(card.getId()).orElseThrow(EntityNotFoundException::new);
         Profession profession=professionRepository.findById(professionId).orElseThrow(EntityNotFoundException::new);
-
+//TODO empty card do nos save
         List<Exercise> newExercises=card.getExercises();
         List<Exercise> oldExercises=oldCard.getExercises();
             for (int i = 0; i < newExercises.size(); i++) {

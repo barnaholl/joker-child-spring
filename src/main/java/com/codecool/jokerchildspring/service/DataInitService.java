@@ -59,7 +59,7 @@ public class DataInitService implements CommandLineRunner {
         Exercise exercise3= Exercise.builder()
                 .question("Hogyan alakultak ki a Hold kráterei?")
                 .assistance("https://www.youtube.com/watch?v=nJGHKCbg-fw")
-                .answer("meteoritok bombázták; nincs légkör ami elfújja;nincs légkör ami megvédje|így született;idegenek ásták;űrharc maradványai;Nap olvasztotta meg").build();
+                .answer("meteoritok bombázták; nincs légkör ami elfújja a krátereket;nincs légkör ami megvédje|így született;idegenek ásták;űrharc maradványai;Nap olvasztotta meg").build();
 
         exerciseRepository.save(exercise1);
         exerciseRepository.save(exercise2);
