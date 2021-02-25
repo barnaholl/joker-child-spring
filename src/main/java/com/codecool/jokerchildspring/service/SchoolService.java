@@ -22,6 +22,10 @@ public class SchoolService {
         return schoolRepository.findAll();
     }
 
+    public List<School> getClassesBySchool(String name){
+        return schoolRepository.findAllByName(name);
+    }
+
     public void createSchool(School school) {
         schoolRepository.save(school);
     }
