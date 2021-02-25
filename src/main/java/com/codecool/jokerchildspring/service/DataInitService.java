@@ -51,7 +51,7 @@ public class DataInitService implements CommandLineRunner {
         Exercise exercise1= Exercise.builder()
                 .question("Miért látjuk úgy a Földről; hogy változik a Hold alakja?")
                 .assistance("https://www.youtube.com/watch?v=FDXPH8r0p30")
-                .answer("Nap máshonnan süti|Nap sütötte rész fényes|mert lapos;könnyű porból van;gravitáció változik;apály-dagály mozgatja").build();
+                .answer("Nap máshonnan süti;Nap sütötte rész fényes|mert lapos;könnyű porból van;gravitáció változik;apály-dagály mozgatja").build();
         Exercise exercise2= Exercise.builder()
                 .question("Miért nem lehet kimenni az űrbe űrruha nélkül?")
                 .assistance("https://www.youtube.com/watch?v=AsWDKqnihjo")
