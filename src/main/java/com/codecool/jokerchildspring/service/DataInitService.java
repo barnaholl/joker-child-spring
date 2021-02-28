@@ -3,7 +3,6 @@ package com.codecool.jokerchildspring.service;
 import com.codecool.jokerchildspring.entity.*;
 import com.codecool.jokerchildspring.model.MemberRole;
 import com.codecool.jokerchildspring.repository.*;
-import lombok.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +19,16 @@ public class DataInitService implements CommandLineRunner {
     private final ProfessionRepository professionRepository;
     private final GameHistoryRepository gameHistoryRepository;
     private final ExerciseRepository exerciseRepository;
+    private final GameSessionRepository gameSessionRepository;
 
-    public DataInitService(CardRepository cardRepository, SchoolRepository schoolRepository, MemberRepository memberRepository, ProfessionRepository professionRepository, GameHistoryRepository gameHistoryRepository, ExerciseRepository exerciseRepository) {
+    public DataInitService(CardRepository cardRepository, SchoolRepository schoolRepository, MemberRepository memberRepository, ProfessionRepository professionRepository, GameHistoryRepository gameHistoryRepository, ExerciseRepository exerciseRepository, GameSessionRepository gameSessionRepository) {
         this.cardRepository = cardRepository;
         this.schoolRepository = schoolRepository;
         this.memberRepository = memberRepository;
         this.professionRepository = professionRepository;
         this.gameHistoryRepository = gameHistoryRepository;
         this.exerciseRepository = exerciseRepository;
+        this.gameSessionRepository = gameSessionRepository;
     }
 
     @Override
@@ -41,6 +42,7 @@ public class DataInitService implements CommandLineRunner {
         professionRepository.deleteAll();
         gameHistoryRepository.deleteAll();
         exerciseRepository.deleteAll();
+        gameSessionRepository.deleteAll();
 
 
 
