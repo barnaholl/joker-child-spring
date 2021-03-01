@@ -1,4 +1,4 @@
-package com.codecool.jokerchildspring.config;
+package com.codecool.jokerchildspring.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
