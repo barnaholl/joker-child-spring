@@ -45,13 +45,56 @@ public class DataInitService implements CommandLineRunner {
         gameSessionRepository.deleteAll();
 
 
+        Profession profession0= Profession.builder().name("Kém").description("Titkos információkat szereznek más országokból, vagy cégektől.").build();
+        professionRepository.save(profession0);
+
+
+        Exercise exercise01= Exercise.builder()
+                .question("Kinek volt a kódneve a 007-es?")
+                .assistance("https://www.youtube.com/watch?v=qGNasaSQdPs")
+                .answer("James Bond|Daniel Craig;Lashana Lynch;Sean Connery;Roger Moore;Timothy Dalton;Pierce Brosnan").build();
+        Exercise exercise02= Exercise.builder()
+                .question("Bárkiből lehet-e kém?")
+                .assistance("https://www.youtube.com/watch?v=AsWDKqnihjo")
+                .answer("Nem, mert veszélyes;Nem, mert komoly kiképzés kell hozzá|Igen, mert nem nehéz;Igen, csak tlevele legyen").build();
+        Exercise exercise03= Exercise.builder()
+                .question("Milyen felszerelés szükséges egy kémnek?")
+                .assistance("https://www.youtube.com/watch?v=nJGHKCbg-fw")
+                .answer("Lehalgató berendezés;Titkos kummunikációs egység|RPG;Autó rakétákkal;JetPack").build();
+
+        exerciseRepository.save(exercise01);
+        exerciseRepository.save(exercise02);
+        exerciseRepository.save(exercise03);
+
+        List<Exercise> exercises0 = new ArrayList<>();
+        exercises0.add(exercise01);
+        exercises0.add(exercise02);
+        exercises0.add(exercise03);
+
+
+
+
+        Card card0= Card.builder()
+                .id(0L)
+                .identificationId("007")
+                .profession(profession0)
+                .exercises(exercises0)
+                .build();
+
+        cardRepository.save(card0);
+
+
+
+
+
+
 
         Profession profession1= Profession.builder().name("Űrhajós").description("Űrhajóval megy az ürbe és ott feladatokat lát el").build();
         professionRepository.save(profession1);
 
 
         Exercise exercise1= Exercise.builder()
-                .question("Miért látjuk úgy a Földről; hogy változik a Hold alakja?")
+                .question("Miért látjuk úgy a Földről, hogy változik a Hold alakja?")
                 .assistance("https://www.youtube.com/watch?v=FDXPH8r0p30")
                 .answer("Nap máshonnan süti;Nap sütötte rész fényes|mert lapos;könnyű porból van;gravitáció változik;apály-dagály mozgatja").build();
         Exercise exercise2= Exercise.builder()
