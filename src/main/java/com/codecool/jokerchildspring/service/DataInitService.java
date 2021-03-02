@@ -4,11 +4,14 @@ import com.codecool.jokerchildspring.entity.*;
 import com.codecool.jokerchildspring.model.MemberRole;
 import com.codecool.jokerchildspring.repository.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 public class DataInitService implements CommandLineRunner {
@@ -20,6 +23,8 @@ public class DataInitService implements CommandLineRunner {
     private final GameHistoryRepository gameHistoryRepository;
     private final ExerciseRepository exerciseRepository;
     private final GameSessionRepository gameSessionRepository;
+    private PasswordEncoder passwordEncoder;
+
 
     public DataInitService(CardRepository cardRepository, SchoolRepository schoolRepository, MemberRepository memberRepository, ProfessionRepository professionRepository, GameHistoryRepository gameHistoryRepository, ExerciseRepository exerciseRepository, GameSessionRepository gameSessionRepository) {
         this.cardRepository = cardRepository;
@@ -29,6 +34,8 @@ public class DataInitService implements CommandLineRunner {
         this.gameHistoryRepository = gameHistoryRepository;
         this.exerciseRepository = exerciseRepository;
         this.gameSessionRepository = gameSessionRepository;
+        this.passwordEncoder= new BCryptPasswordEncoder(10);
+        //this.passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     @Override
@@ -173,7 +180,7 @@ public class DataInitService implements CommandLineRunner {
                 .nick("Vikusz")
                 .birthDate(Date.valueOf("2009-09-09"))
                 .email("best@student.com")
-                .password("1234")
+                .password(passwordEncoder.encode("1234"))
                 .role(MemberRole.STUDENT)
                 .experience(0)
                 .build();
@@ -185,7 +192,7 @@ public class DataInitService implements CommandLineRunner {
                 .nick("BestTeacherEver")
                 .birthDate(Date.valueOf("1996-09-09"))
                 .email("best@teacher.com")
-                .password("1234")
+                .password(passwordEncoder.encode("1234"))
                 .role(MemberRole.TEACHER)
                 .experience(2)
                 .build();
@@ -224,6 +231,19 @@ public class DataInitService implements CommandLineRunner {
                 .teacherId(2L)
                 .build();
         schoolRepository.save(school);
+
+
+        /*UserDetails admin= User.builder()
+                .username("admin")
+                .password(passwordEncoder.encode("admin"))
+                .roles(ADMIN.name())
+                .build();
+
+        UserDetails user=User.builder()
+                .username("student")
+                .password(passwordEncoder.encode("student"))
+                .roles(STUDENT.name())
+                .build();*/
 
     }
 }
