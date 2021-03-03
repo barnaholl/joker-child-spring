@@ -2,10 +2,6 @@ package com.codecool.jokerchildspring.security;
 
 import com.codecool.jokerchildspring.entity.Member;
 import com.codecool.jokerchildspring.repository.MemberRepository;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
