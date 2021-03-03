@@ -56,7 +56,7 @@ public class DataInitService implements CommandLineRunner {
         Exercise exercise02= Exercise.builder()
                 .question("Bárkiből lehet-e kém?")
                 .assistance("https://www.youtube.com/watch?v=AsWDKqnihjo")
-                .answer("Nem, mert veszélyes;Nem, mert komoly kiképzés kell hozzá|Igen, mert nem nehéz;Igen, csak tlevele legyen").build();
+                .answer("Nem, mert veszélyes;Nem, mert komoly kiképzés kell hozzá|Igen, mert nem nehéz;Igen, csak útlevele legyen").build();
         Exercise exercise03= Exercise.builder()
                 .question("Milyen felszerelés szükséges egy kémnek?")
                 .assistance("https://www.youtube.com/watch?v=nJGHKCbg-fw")

@@ -24,6 +24,11 @@ public class SchoolController {
         return ResponseEntity.ok(schoolService.getAllSchools());
     }
 
+    @GetMapping("/getSchoolNames")
+    public ResponseEntity getSchools(){
+        return ResponseEntity.ok(schoolService.getSchoolNames());
+    }
+
     @GetMapping("/classesBySchoolName")
     public ResponseEntity getClassesBySchool(@RequestParam("name") String name){
         return ResponseEntity.ok(schoolService.getClassesBySchool(name));

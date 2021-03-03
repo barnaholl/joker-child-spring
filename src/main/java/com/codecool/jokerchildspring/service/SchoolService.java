@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +23,11 @@ public class SchoolService {
 
     public List<School> getAllSchools() {
         return schoolRepository.findAll();
+    }
+
+    public Set<String> getSchoolNames() {
+        Set<String> allSchoolName = schoolRepository.findAll().stream().map(School::getName).collect(Collectors.toCollection(TreeSet::new));
+        return allSchoolName;
     }
 
     public List<School> getClassesBySchool(String name){
