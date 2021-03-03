@@ -1,6 +1,11 @@
 package com.codecool.jokerchildspring.security;
 
 import com.codecool.jokerchildspring.entity.Member;
+import com.codecool.jokerchildspring.repository.MemberRepository;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +15,16 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Key;
 import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,6 +36,9 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenServices jwtTokenServices;
+    private final MemberRepository memberRepository;
+
+    public static final String TOKEN = "token";
 
 
     @PostMapping("/login")
@@ -64,6 +78,37 @@ public class AuthController {
                 .build();
         response.addHeader("Set-Cookie", cookie.toString());
     }
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletResponse response) {
+        createLogoutCookie(response);
+        return ResponseEntity.ok().build();
+    }
+
+    private void createLogoutCookie(HttpServletResponse response) {
+        ResponseCookie cookie = ResponseCookie.from("token", "")
+                .domain("localhost") // should be parameterized
+                .sameSite("Strict")  // CSRF
+                .maxAge(0)
+                .httpOnly(true)      // XSS
+                .path("/")
+                .build();
+        response.addHeader("Set-Cookie", cookie.toString());
+    }
+
+    @GetMapping("/current-user-object")
+    public Member getCurrentUserObject(HttpServletRequest request) {
+        Optional<Cookie> jwtToken =
+                Arrays.stream(Optional.ofNullable(request.getCookies()).orElse(new Cookie[]{}))
+                        .filter(cookie -> cookie.getName().equals(TOKEN))
+                        .findFirst();
+        if (jwtToken.isPresent()) {
+            UsernamePasswordAuthenticationToken userToken = jwtTokenServices.validateTokenAndExtractUserSpringToken(jwtToken.get().getValue());
+            return memberRepository.findByName(userToken.getName()).orElseThrow(EntityNotFoundException::new);
+        }
+        return null;
+    }
+
+
 
     @GetMapping("/me")
     public String currentUser(){
