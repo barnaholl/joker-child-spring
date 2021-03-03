@@ -198,6 +198,19 @@ public class DataInitService implements CommandLineRunner {
                 .build();
         memberRepository.save(teacher);
 
+        Member admin= Member.builder()
+                .id(999999999999999L)
+                .name("admin")
+                .nick("admin")
+                .birthDate(Date.valueOf("1996-09-09"))
+                .email("admin@admin.com")
+                .password(passwordEncoder.encode("admin"))
+                .role(MemberRole.ADMIN)
+                .experience(0)
+                .build();
+
+        memberRepository.save(admin);
+
 
 
         School school= School.builder()
