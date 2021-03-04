@@ -21,7 +21,7 @@ public class Member {
 
     private String name;
 
-    private String nick;
+    private String username;
 
     private String email;
 

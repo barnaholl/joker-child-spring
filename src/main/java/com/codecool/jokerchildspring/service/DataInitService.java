@@ -177,7 +177,7 @@ public class DataInitService implements CommandLineRunner {
         Member student= Member.builder()
                 .id(0L)
                 .name("Viktória")
-                .nick("Vikusz")
+                .username("Vikusz")
                 .birthDate(Date.valueOf("2009-09-09"))
                 .email("best@student.com")
                 .password(passwordEncoder.encode("1234"))
@@ -189,7 +189,7 @@ public class DataInitService implements CommandLineRunner {
         Member teacher= Member.builder()
                 .id(2L)
                 .name("Dummy Teacher")
-                .nick("BestTeacherEver")
+                .username("BestTeacherEver")
                 .birthDate(Date.valueOf("1996-09-09"))
                 .email("best@teacher.com")
                 .password(passwordEncoder.encode("1234"))
@@ -201,7 +201,7 @@ public class DataInitService implements CommandLineRunner {
         Member admin= Member.builder()
                 .id(999999999999999L)
                 .name("admin")
-                .nick("admin")
+                .username("admin")
                 .birthDate(Date.valueOf("1996-09-09"))
                 .email("admin@admin.com")
                 .password(passwordEncoder.encode("admin"))
@@ -244,19 +244,6 @@ public class DataInitService implements CommandLineRunner {
                 .teacherId(2L)
                 .build();
         schoolRepository.save(school);
-
-
-        /*UserDetails admin= User.builder()
-                .username("admin")
-                .password(passwordEncoder.encode("admin"))
-                .roles(ADMIN.name())
-                .build();
-
-        UserDetails user=User.builder()
-                .username("student")
-                .password(passwordEncoder.encode("student"))
-                .roles(STUDENT.name())
-                .build();*/
 
     }
 }
