@@ -44,8 +44,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/profession/**").hasAuthority("ADMIN")
             //.antMatchers("/school/**").authenticated()
             //.antMatchers("joinRequest").authenticated()
-            //.antMatchers("/member/**").authenticated()
-            .antMatchers("/swagger-ui.html").permitAll()
+            .antMatchers("/member/**").permitAll()
+            .antMatchers("/swagger-ui.html",
+                    "/v2/api-docs",
+                    "/configuration/ui",
+                    "/swagger-resources/**",
+                    "/configuration/security",
+                    "/webjars/**").permitAll()
+
+
             .anyRequest().denyAll()
             .and()
             .addFilterBefore(new JwtTokenFilter(jwtTokenServices), UsernamePasswordAuthenticationFilter.class);
