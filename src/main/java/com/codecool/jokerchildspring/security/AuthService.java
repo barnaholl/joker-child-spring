@@ -67,10 +67,13 @@ public class AuthService {
         return "Token has been removed";
     }
 
-    public String register(Member member){
+    public Map<Object, Object> register(Member member, HttpServletResponse response){
+        UserCredentials userCredentials= UserCredentials.builder().username(member.getUsername()).password(member.getPassword()).build();
+
         member.setPassword(passwordEncoder.encode(member.getPassword()));
-        memberRepository.save(member);
-        return "Member : "+member+" saved";
+        memberRepository.saveAndFlush(member);
+
+        return login(userCredentials,response);
     }
 
     public Member getCurrentUserObject(HttpServletRequest request) {

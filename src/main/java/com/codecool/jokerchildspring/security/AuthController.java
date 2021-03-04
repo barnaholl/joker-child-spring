@@ -27,8 +27,8 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String>  register(@RequestBody Member member) {
-        return ResponseEntity.ok(authService.register(member));
+    public ResponseEntity<Map<Object, Object>> register(@RequestBody Member member, HttpServletResponse response) {
+        return ResponseEntity.ok(authService.register(member,response));
     }
 
     @GetMapping("/current-user-object")
