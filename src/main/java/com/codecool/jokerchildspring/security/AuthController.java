@@ -11,7 +11,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -35,7 +34,7 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public ResponseEntity signIn(@RequestBody UserCredentials data,HttpServletResponse response) {
+    public ResponseEntity login(@RequestBody UserCredentials data,HttpServletResponse response) {
         try {
             String username = data.getUsername();
             String password= data.getPassword();
@@ -61,6 +60,18 @@ public class AuthController {
         }
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletResponse response) {
+        createLogoutCookie(response);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<String> register(HttpServletResponse response) {
+        createLogoutCookie(response);
+        return ResponseEntity.ok().build();
+    }
+
     private void addTokenToCookie(HttpServletResponse response, String token) {
         ResponseCookie cookie = ResponseCookie.from("token", token)
                 .domain("localhost") // should be parameterized
@@ -71,11 +82,7 @@ public class AuthController {
                 .build();
         response.addHeader("Set-Cookie", cookie.toString());
     }
-    @PostMapping("/logout")
-    public ResponseEntity<String> logout(HttpServletResponse response) {
-        createLogoutCookie(response);
-        return ResponseEntity.ok().build();
-    }
+
 
     private void createLogoutCookie(HttpServletResponse response) {
         ResponseCookie cookie = ResponseCookie.from("token", "")
@@ -101,11 +108,4 @@ public class AuthController {
         return null;
     }
 
-    @GetMapping("/me")
-    public String currentUser(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(authentication.getPrincipal());
-        Member user = (Member) authentication.getPrincipal();
-        return user.getName() + "\n" + user.getRole();
-    }
 }
