@@ -28,7 +28,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            //.cors().and()
+            .cors().and()
             .httpBasic().disable()
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -40,7 +40,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.PUT,"/card/**").hasAuthority("ADMIN")
             .antMatchers(HttpMethod.DELETE,"/card/**").hasAuthority("ADMIN")
             .antMatchers("/gameHistory/**").authenticated()
-            .antMatchers("/gameSession/**").authenticated()
+            .antMatchers("/gameSession/**").permitAll()
             .antMatchers("/profession/**").hasAuthority("ADMIN")
             //.antMatchers("/school/**").authenticated()
             //.antMatchers("joinRequest").authenticated()

@@ -90,10 +90,11 @@ public class AuthService {
 
     private void addTokenToCookie(HttpServletResponse response, String token) {
         ResponseCookie cookie = ResponseCookie.from("token", token)
-                .domain("localhost") // should be parameterized
-                .sameSite("Strict")  // CSRF
+                //.domain("localhost") // should be parameterized
+                //.sameSite("Strict")  // CSRF
                 .maxAge(Duration.ofHours(24))
                 .httpOnly(true)      // XSS
+                .secure(false)
                 .path("/")
                 .build();
         response.addHeader("Set-Cookie", cookie.toString());

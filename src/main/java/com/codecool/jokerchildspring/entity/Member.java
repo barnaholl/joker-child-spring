@@ -31,10 +31,6 @@ public class Member {
 
     private MemberRole role;
 
-//    @JsonManagedReference
-//    @OneToMany(mappedBy = "member", cascade = {CascadeType.PERSIST})
-//    private List<GameHistory> gameHistories;
-
     private Integer experience;
 
 }
