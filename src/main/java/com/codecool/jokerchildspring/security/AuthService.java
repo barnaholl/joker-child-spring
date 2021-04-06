@@ -24,6 +24,8 @@ import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static ch.qos.logback.core.joran.spi.ConsoleTarget.findByName;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -90,10 +92,13 @@ public class AuthService {
         throw new JwtException("There is no active JwtToken");
     }
 
-    public String getCurrentUser(){
+    public Long getCurrentUserId(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Member user = (Member) authentication.getPrincipal();
-        return user.getUsername() + "\n" + user.getRole();
+        Optional<Member> member = memberRepository.findByName((String) authentication.getPrincipal());
+        if(!member.isPresent()){
+            throw new EntityNotFoundException();
+        }
+        return member.get().getId();
     }
 
 

@@ -38,8 +38,8 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public String getCurrentUser(){
-       return authService.getCurrentUser();
+    public Long getCurrentUser(){
+       return authService.getCurrentUserId();
     }
 
 
