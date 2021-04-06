@@ -55,7 +55,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
             .anyRequest().denyAll()
             .and()
-            .addFilterBefore(new JwtTokenFilter(jwtTokenServices), UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(new JwtTokenFilter2(jwtTokenServices), UsernamePasswordAuthenticationFilter.class);
 
     }
     

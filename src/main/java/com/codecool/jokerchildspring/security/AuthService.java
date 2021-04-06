@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -55,12 +56,13 @@ public class AuthService {
             model.put("roles", roles);
             model.put("token", token);
 
-            addTokenToCookie(response,token);
+            //addTokenToCookie(response,token);
             return model;
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username/password supplied");
         }
     }
+
 
     public String logout(HttpServletResponse response){
         createLogoutCookie(response);
@@ -88,6 +90,13 @@ public class AuthService {
         throw new JwtException("There is no active JwtToken");
     }
 
+    public String getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Member user = (Member) authentication.getPrincipal();
+        return user.getUsername() + "\n" + user.getRole();
+    }
+
+
     private void addTokenToCookie(HttpServletResponse response, String token) {
         ResponseCookie cookie = ResponseCookie.from("token", token)
                 //.domain("localhost") // should be parameterized
@@ -95,15 +104,15 @@ public class AuthService {
                 .maxAge(Duration.ofHours(24))
                 .httpOnly(true)      // XSS
                 .secure(false)
-                .path("/")
+                //.path("/")
                 .build();
         response.addHeader("Set-Cookie", cookie.toString());
     }
 
     private void createLogoutCookie(HttpServletResponse response) {
         ResponseCookie cookie = ResponseCookie.from("token", "")
-                .domain("localhost") // should be parameterized
-                .sameSite("Strict")  // CSRF
+                //.domain("localhost") // should be parameterized
+                //.sameSite("Strict")  // CSRF
                 .maxAge(0)
                 .httpOnly(true)      // XSS
                 .path("/")

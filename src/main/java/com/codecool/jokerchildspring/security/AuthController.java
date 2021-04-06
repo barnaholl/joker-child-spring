@@ -12,7 +12,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-@CrossOrigin
+@CrossOrigin(origins ={"http://localhost:3000"}, allowCredentials = "true")
 public class AuthController {
 
     private final AuthService authService;
@@ -36,5 +36,11 @@ public class AuthController {
     public ResponseEntity<Member> getCurrentUserObject(HttpServletRequest request) {
        return ResponseEntity.ok(authService.getCurrentUserObject(request));
     }
+
+    @GetMapping("/me")
+    public String getCurrentUser(){
+       return authService.getCurrentUser();
+    }
+
 
 }
