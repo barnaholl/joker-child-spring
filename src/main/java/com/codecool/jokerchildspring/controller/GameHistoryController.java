@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+@CrossOrigin(origins ={"http://localhost:3000"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/gameHistory")
 @RequiredArgsConstructor

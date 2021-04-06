@@ -27,13 +27,14 @@ public class CardService {
     }
 
     public void createCard(Card card) {
+        deleteEmptyQuestion(card);
         cardRepository.save(card);
     }
 
     public void createCardWithExistingProfession(Card card,Long professionId) {
         Profession profession=professionRepository.findById(professionId).orElseThrow(EntityNotFoundException::new);
-
         card.setProfession(profession);
+        deleteEmptyQuestion(card);
         cardRepository.save(card);
 
     }
@@ -43,6 +44,7 @@ public class CardService {
         oldCard.setIdentificationId(card.getIdentificationId());
         oldCard.setProfession(card.getProfession());
         oldCard.setExercises(card.getExercises());
+        deleteEmptyQuestion(oldCard);
         cardRepository.save(oldCard);
     }
 
@@ -60,18 +62,29 @@ public class CardService {
 
         List<Exercise> newExercises=card.getExercises();
         List<Exercise> oldExercises=oldCard.getExercises();
-            for (int i = 0; i < newExercises.size(); i++) {
-                oldExercises.get(i).setQuestion(newExercises.get(i).getQuestion());
-                oldExercises.get(i).setAnswer(newExercises.get(i).getAnswer());
-                oldExercises.get(i).setAssistance(newExercises.get(i).getAssistance());
-            }
+
+        deleteEmptyQuestion(card);
+        for (int i = 0; i < newExercises.size(); i++) {
+            oldExercises.get(i).setQuestion(newExercises.get(i).getQuestion());
+            oldExercises.get(i).setAnswer(newExercises.get(i).getAnswer());
+            oldExercises.get(i).setAssistance(newExercises.get(i).getAssistance());
+        }
 
         oldCard.setProfession(profession);
         oldCard.setExercises(oldExercises);
         oldCard.setIdentificationId(card.getIdentificationId());
 
         cardRepository.save(oldCard);
-
-
     }
+
+    private void deleteEmptyQuestion(Card card){
+        List<Exercise> exercises = card.getExercises();
+        for (int i = card.getExercises().size()-1; i >= 0; i--) {
+            if (card.getExercises().get(i).getQuestion().equals("")) {
+                card.getExercises().remove(i);
+                System.out.println("Remove "+i+". question, because it was empty.");
+            }
+        }
+    }
+
 }
