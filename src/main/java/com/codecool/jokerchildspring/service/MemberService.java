@@ -32,7 +32,7 @@ public class MemberService {
     public void updateMember(Member member) {
         Member oldMember= memberRepository.findById(member.getId()).orElseThrow(EntityNotFoundException::new);
         oldMember.setName(member.getName());
-        oldMember.setNick(member.getNick());
+        oldMember.setUsername(member.getUsername());
         oldMember.setEmail(member.getEmail());
         oldMember.setPassword(member.getPassword());
         oldMember.setBirthDate(member.getBirthDate());
