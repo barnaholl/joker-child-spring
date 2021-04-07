@@ -63,7 +63,7 @@ public class CardController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return ResponseEntity.ok("Created dummy data.");
+        return ResponseEntity.ok("Created dummy data");
     }
 
     @DeleteMapping("/")
